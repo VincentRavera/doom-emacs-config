@@ -56,3 +56,8 @@
 
 ;; ORG
 (load! "org-config/org-config.el")
+
+;; Python
+;; Completion
+;; After enabeling the virtualenv (M-x pyenv-workon)
+;; Load the lsp (M-x lsp)
