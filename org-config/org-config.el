@@ -3,15 +3,15 @@
   ;; TODOS
   (setq org-todo-keywords
         '((sequence "TODO(t!)"
-                    "DOINGNOW(d!)"
+                    "INPROGRESS(i!)"
                     "BLOCKED(b!)"
                     "|"
                     "HACKED(h!)"
                     "CANCELLED(c!)"
-                    "DONE(F!)"))
+                    "DONE(d!)"))
         org-todo-keyword-faces
         '(("TODO" . org-warning)
-          ("DOINGNOW" . "#E35DBF")
+          ("INPROGRESS" . "#E35DBF")
           ("CANCELED" . (:foreground "white" :background "#4d4d4d" :weight bold))
           ("HACKED" . (:foreground "green" :background "black" :weight italic))
           ("BLOCKED" . "pink"))))
