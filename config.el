@@ -59,5 +59,7 @@
 
 ;; Python
 ;; Completion
+;; (workon) pip install node pytest pyflakes isort python-language-server
 ;; After enabeling the virtualenv (M-x pyenv-workon)
 ;; Load the lsp (M-x lsp)
+(load! "dap-configs/dap-configs.el")
