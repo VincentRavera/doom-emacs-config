@@ -30,7 +30,7 @@
 
 ;; If you want to change the style of line numbers, change this to `relative' or
 ;; `nil' to disable it:
-(setq display-line-numbers-type t)
+(setq display-line-numbers-type 'relative)
 
 
 ;; Here are some additional functions/macros that could help you configure Doom:
@@ -53,10 +53,16 @@
 (set-frame-parameter (selected-frame) 'alpha '(92 . 90))
 (add-to-list 'default-frame-alist '(alpha . (92 . 90)))
 
+;; Spell
+(after! flyspell
+  (flyspell-prog-mode))
+
 
 ;; ORG
 (load! "org-config/org-config.el")
 
+;; Dugug
+(load! "debug-config/dapmode-load.el")
 ;; Python
 ;; Completion
 ;; (workon) pip install node pytest pyflakes isort python-language-server

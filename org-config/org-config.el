@@ -26,12 +26,12 @@
 
 ;; Journal
 (after! org-journal
-  (setq org-enable-org-journal-support t
-        org-journal-dir "~/workspace/wiki/VRA-Notes/2020/"
+  (setq org-enable-org-journal-support t)
+  (setq org-journal-dir "~/workspace/wiki/VRA-Notes/2020/"
         org-journal-file-format "%Y-%m.org"
         org-journal-date-prefix "* "
-        org-journal-date-format "2020/%m/%d"
+        org-journal-date-format "%Y/%m/%d"
         org-journal-time-prefix "** "
-        org-journal-time-format "%H:%M - Task: "))
+        org-journal-time-format "%Y%m: "))
 
 (load! "org-keybindings.el")
