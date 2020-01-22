@@ -61,11 +61,14 @@
 ;; ORG
 (load! "org-config/org-config.el")
 
-;; Dugug
-(load! "debug-config/dapmode-load.el")
 ;; Python
 ;; Completion
 ;; (workon) pip install node pytest pyflakes isort python-language-server
 ;; After enabeling the virtualenv (M-x pyenv-workon)
 ;; Load the lsp (M-x lsp)
 (load! "dap-configs/dap-configs.el")
+
+;; Java
+;; /home/vravera/Application/Eclipse/lsp/
+(after! lsp-java
+  (setq lsp-java-server-install-dir "/home/vravera/Application/Eclipse/lsp/"))

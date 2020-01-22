@@ -24,7 +24,8 @@
        :completion
        (company           ; the ultimate code completion backend
         +childframe)
-       ;;helm              ; the *other* search engine for love and life
+       ;; (helm              ; the *other* search engine for love and life
+       ;;  +childframe)
        ;;ido               ; the other *other* search engine...
        (ivy               ; a search engine for love and life
         +childframe)
@@ -89,8 +90,6 @@
        ;;editorconfig      ; let someone else argue about tabs vs spaces
        ;;ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
-       flycheck          ; tasing you for every semicolon you forget
-       flyspell          ; tasing you for misspelling mispelling
        ;;gist              ; interacting with github gists
        (lookup           ; helps you navigate your code and documentation
         +docsets)        ; ...or in Dash docsets locally
@@ -105,6 +104,11 @@
        ;;terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
        ;;upload            ; map local to remote projects via ssh/ftp
+
+
+       :checkers
+       flycheck          ; tasing you for every semicolon you forget
+       flyspell          ; tasing you for misspelling mispelling
 
        :lang
        ;;agda              ; types of types of types of types...
@@ -123,7 +127,7 @@
        ;;ess               ; emacs speaks statistics
        ;;faust             ; dsp, but you get to keep your soul
        ;;fsharp           ; ML stands for Microsoft's Language
-       (go +lsp)                ; the hipster dialect
+       ;;(go +lsp)                ; the hipster dialect
        ;;(haskell +dante)  ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ;
