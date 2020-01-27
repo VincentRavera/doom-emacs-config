@@ -49,6 +49,11 @@
 ;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
 ;; they are implemented.
 
+;; install dependencies
+;; sudo add-apt-repository ppa:x4121/ripgrep
+;; sudo apt-get install ripgrep
+;; SPC s p
+
 ;; Transparency
 (set-frame-parameter (selected-frame) 'alpha '(92 . 90))
 (add-to-list 'default-frame-alist '(alpha . (92 . 90)))
@@ -61,14 +66,28 @@
 ;; ORG
 (load! "org-config/org-config.el")
 
-;; Python
-;; Completion
-;; (workon) pip install node pytest pyflakes isort python-language-server
+;; Python - Dependency management
+;;
+;; Prerequisites:
+;;
+;; Install pyenv : https://github.com/pyenv/pyenv
+;; Then create a recent and global python:
+;; pyenv install 3.7.6
+;; pyenv global 3.7.6
+;; Install VirtualEnvWrapper: https://virtualenvwrapper.readthedocs.io/en/latest/install.html
+;; Create a venv for your project:
+;; mkvirtualenv $NAME_OF_THE_PROJECT
+;; workon $NAME_OF_THE_PROJECT
+;; (workon) python -m install node pytest pyflakes isort python-language-server ptvsd
+;;
+;; Starting the IDE
+;;
 ;; After enabeling the virtualenv (M-x pyenv-workon)
 ;; Load the lsp (M-x lsp)
 (load! "dap-configs/dap-configs.el")
 
 ;; Java
 ;; /home/vravera/Application/Eclipse/lsp/
+;; wget http://download.eclipse.org/jdtls/milestones/0.48.0/jdt-language-server-0.48.0-201912040033.tar.gz
 (after! lsp-java
-  (setq lsp-java-server-install-dir "/home/vravera/Application/Eclipse/lsp/"))
+  (setq lsp-java-server-install-dir "/home/m0b1us/Applications/eclipse/lsp"))
