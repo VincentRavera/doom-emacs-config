@@ -62,6 +62,9 @@
 (after! flyspell
   (flyspell-prog-mode))
 
+;; snippets
+(after! 'yasnippet
+        yas-global-mode 1)
 
 ;; ORG
 (load! "org-config/org-config.el")
@@ -89,5 +92,14 @@
 ;; Java
 ;; /home/vravera/Application/Eclipse/lsp/
 ;; wget http://download.eclipse.org/jdtls/milestones/0.48.0/jdt-language-server-0.48.0-201912040033.tar.gz
+;; Usefull tips:
+;; lsp (start the daemon)
+;; SPC c d - Jump to definition
+;; SPC c D - Jump to refrences
+;; SPC c a - apply suggestions (Ctrl 1 in eclipse)
+;; SPC c j - open resource (Ctrl R in eclipse)
+;; lsp-ui-imenu (Show outline of code)
+;; lsp-treemacs-error-list (list errors in project)
+;;
 (after! lsp-java
   (setq lsp-java-server-install-dir "/home/m0b1us/Applications/eclipse/lsp"))
