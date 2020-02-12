@@ -91,6 +91,22 @@
 ;;
 ;; Starting the IDE
 ;;
+;; Key bindings:
+
+(map! :leader
+      (:prefix ("l" . "lsp") ;; LSP UI/DAP
+        :desc "lsp start server" "l" #'lsp
+        :desc "errors in projects" "e" #'lsp-treemacs-errors-list
+        :desc "inline info toggle" "i" #'lsp-ui-sideline-toggle-symbols-info
+        :desc "documentation" "d" #'lsp-ui-doc-glance
+        :desc "outline" "o" #'lsp-ui-imenu
+        (:prefix ("s" . "search") ;; LSP search
+        :desc "definition" "d" #'lsp-ui-peek-find-definitions
+        :desc "implementations" "i" #'lsp-ui-peek-find-implementation
+        :desc "references" "r" #'lsp-ui-peek-find-references
+      )))
+
+
 ;; See https://github.com/murphytalk/doom.d for tips and trick
 ;;
 ;; After enabeling the virtualenv (M-x pyenv-workon)
