@@ -4,8 +4,8 @@
 ;; refresh' after modifying this file!
 
 
-;; These are used for a number of things, particularly for GPG configuration,
-;; some email clients, file templates and snippets.
+;; Some functionality uses this to identify you, e.g. GPG configuration, email
+;; clients, file templates and snippets.
 (setq user-full-name "Vincent RAVERA"
       user-mail-address "vincent.ravera@atos.net")
 
@@ -58,13 +58,17 @@
 (set-frame-parameter (selected-frame) 'alpha '(92 . 90))
 (add-to-list 'default-frame-alist '(alpha . (92 . 90)))
 
+;; Avy
+;; g s SPC for all windows
+;; (setq avy-all-windows t)
+
 ;; Spell
-(after! flyspell
-  (flyspell-prog-mode))
+;; (after! flyspell
+;;   (flyspell-prog-mode))
 
 ;; snippets
-(after! 'yasnippet
-        yas-global-mode 1)
+;; (after! 'yasnippet
+;;         yas-global-mode 1)
 
 ;; ORG
 (load! "org-config/org-config.el")
@@ -77,17 +81,21 @@
 ;; Then create a recent and global python:
 ;; pyenv install 3.7.6
 ;; pyenv global 3.7.6
-;; Install VirtualEnvWrapper: https://virtualenvwrapper.readthedocs.io/en/latest/install.html
-;; Create a venv for your project:
-;; mkvirtualenv $NAME_OF_THE_PROJECT
-;; workon $NAME_OF_THE_PROJECT
-;; (workon) python -m install node pytest pyflakes isort python-language-server ptvsd
+;; Then add the plugin from: https://github.com/pyenv/pyenv-virtualenv
+;; You can now create a venv for your projects
+;; (Un-tested, do not use) Install VirtualEnvWrapper: https://virtualenvwrapper.readthedocs.io/en/latest/install.html
+;; (Un-tested, do not use) Create a venv for your project:
+;; (Un-tested, do not use) mkvirtualenv $NAME_OF_THE_PROJECT
+;; (Un-tested, do not use) workon $NAME_OF_THE_PROJECT
+;; (Un-tested, do not use) (workon) python -m install node pytest pyflakes isort python-language-server ptvsd
 ;;
 ;; Starting the IDE
 ;;
+;; See https://github.com/murphytalk/doom.d for tips and trick
+;;
 ;; After enabeling the virtualenv (M-x pyenv-workon)
-;; Load the lsp (M-x lsp)
-(load! "dap-configs/dap-configs.el")
+;; Load the lsp (M-x lsp) (SPC l l)
+;;
 
 ;; Java
 ;; /home/vravera/Application/Eclipse/lsp/
