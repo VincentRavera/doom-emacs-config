@@ -98,8 +98,13 @@
         :desc "lsp start server" "l" #'lsp
         :desc "errors in projects" "e" #'lsp-treemacs-errors-list
         :desc "inline info toggle" "i" #'lsp-ui-sideline-toggle-symbols-info
-        :desc "documentation" "d" #'lsp-ui-doc-glance
+        :desc "Documentation" "D" #'lsp-ui-doc-glance
         :desc "outline" "o" #'lsp-ui-imenu
+        (:prefix ("d" . "debug") ;; DAP-debug
+        :desc "start debug" "d" #'dap-debug
+        :desc "breakpoint toogle" "d" #'dap-breakpoint-toggle
+        :desc "edit debug template" "t" #'dap-debug
+        )
         (:prefix ("s" . "search") ;; LSP search
         :desc "definition" "d" #'lsp-ui-peek-find-definitions
         :desc "implementations" "i" #'lsp-ui-peek-find-implementation
