@@ -1,0 +1,15 @@
+# more at https://www.masteringemacs.org/article/complete-guide-mastering-eshell
+# Defaults
+alias q exit
+alias f find-file $1
+alias d dired $1
+alias bd eshell-up $1
+alias rg rg --color=always $*
+alias l ls -lh $*
+alias ll ls -lah $*
+alias clear clear-scrollback
+# Overide editor
+alias e emacsclient $*
+alias vi emacsclient $*
+alias vim emacsclient $*
+alias nvim emacsclient $*

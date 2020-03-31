@@ -1,0 +1,41 @@
+#+TITLE:   Notes to use emacs
+#+DATE:    mars 27, 2020
+
+* Table of Contents :TOC_3:noexport:
+- [[#description][Description]]
+- [[#notes][Notes]]
+  - [[#dired][Dired]]
+  - [[#eshell][eshell]]
+    - [[#lisp-arrays][lisp arrays]]
+    - [[#for-loops][for loops]]
+    - [[#redirecting-to-buffer][redirecting to buffer]]
+  - [[#lsp][lsp]]
+    - [[#python][python]]
+    - [[#java][java]]
+    - [[#ruby][ruby]]
+    - [[#personal-bindings][personal bindings]]
+
+* Description
+This repo contains my doom config
+* Notes
+** Dired
+Since dired does not have a ~?~ prompt, here i will enuerates commands.
+** eshell
+Changes a lot from bash.
+config lies in the ~eshell/~ directory
+I will list all the tips and tricks i find here
+*** lisp arrays
+TODO
+*** for loops
+TODO
+*** redirecting to buffer
+TODO
+** lsp
+lsp is used for language completions
+*** python
+TODO
+*** java
+TODO
+*** ruby
+TODO
+*** personal bindings

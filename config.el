@@ -49,14 +49,16 @@
 ;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
 ;; they are implemented.
 
+(add-to-list 'default-frame-alist
+                       '(font . "DejaVu Sans Mono-14"))
 ;; install dependencies
 ;; sudo add-apt-repository ppa:x4121/ripgrep
 ;; sudo apt-get install ripgrep
 ;; SPC s p
 
 ;; Transparency
-(set-frame-parameter (selected-frame) 'alpha '(92 . 90))
-(add-to-list 'default-frame-alist '(alpha . (92 . 90)))
+;; (set-frame-parameter (selected-frame) 'alpha '(92 . 90))
+;; (add-to-list 'default-frame-alist '(alpha . (92 . 90)))
 
 ;; Avy
 ;; g s SPC for all windows
@@ -87,7 +89,7 @@
 ;; (Un-tested, do not use) Create a venv for your project:
 ;; (Un-tested, do not use) mkvirtualenv $NAME_OF_THE_PROJECT
 ;; (Un-tested, do not use) workon $NAME_OF_THE_PROJECT
-;; (Un-tested, do not use) (workon) python -m install node pytest pyflakes isort python-language-server ptvsd
+;; (Un-tested, do not use) (workon) python -m pip install node pytest pyflakes isort python-language-server ptvsd
 ;;
 ;; Starting the IDE
 ;;
