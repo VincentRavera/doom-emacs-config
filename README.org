@@ -6,8 +6,13 @@
 - [[#notes][Notes]]
   - [[#dired][Dired]]
   - [[#eshell][eshell]]
-    - [[#lisp-arrays][lisp arrays]]
-    - [[#for-loops][for loops]]
+    - [[#variables][Variables]]
+    - [[#math][Math]]
+    - [[#strings][Strings]]
+    - [[#predicates][Predicates]]
+    - [[#lists-and-con-cells][Lists (and Con-cells)]]
+    - [[#loops-and-iterations][Loops and Iterations]]
+    - [[#random][Random]]
     - [[#redirecting-to-buffer][redirecting to buffer]]
   - [[#lsp][lsp]]
     - [[#python][python]]
@@ -19,15 +24,96 @@
 This repo contains my doom config
 * Notes
 ** Dired
-Since dired does not have a ~?~ prompt, here i will enuerates commands.
+Sifloat-ence dired does not have a ~?~ prompt, here i will enuerates commands.
 ** eshell
 Changes a lot from bash.
 config lies in the ~eshell/~ directory
 I will list all the tips and tricks i find here
-*** lisp arrays
+I always use () becaus elisp require them, but in eshell you can drop the outer most ().
+e.g.:
+#+begin_src emacs-lisp :tangle yes
+(+ 5 7) ;; in eshell you can type + 5 7
+#+end_src
+*** Variables
+Set a variable
+| bash               | elisp              |
+|--------------------+--------------------|
+| export toto=5      | (setq toto 5)      |
+| export tutu="TUTU" | (setq tutu "TUTU") |
+| titi=("a" "b")     | (setq (list a b))  |
+| tata="a b c"       | (setq titi '(a b)) |
+Set variable is not present
+#+BEGIN_SRC elisp
+(defvar toto "tutu")
+#+END_SRC
+~?~ before a character means that it is a simple charcter
+
+*** Math
+| Remarks                                    | Functions                     |              Output |
+|--------------------------------------------+-------------------------------+---------------------|
+|                                            | (+ 5 2)                       |                   7 |
+|                                            | (- 7 2)                       |                   5 |
+|                                            | (* 5 2)                       |                  10 |
+| Eshell needs the paren for this operations | (/ 10.0 7) ;; outputs a float |  1.4285714285714286 |
+| Eshell needs the paren for this operations | (/ 10 7) ;; rounds            |                   1 |
+|                                            | (cos 3)                       | -0.9899924966004454 |
+|                                            | (sin 1.7)                     |  0.9916648104524686 |
+|                                            | (tan 2)                       |  -2.185039863261519 |
+|                                            | (acos 0.9)                    | 0.45102681179626236 |
+|                                            | (asin 0.9)                    |  1.1197695149986342 |
+|                                            | (atan 999)                    |  1.5697953261282307 |
+|                                            | (exp 3)                       |  20.085536923187668 |
+|                                            | (log 2 (exp 1))               |  0.6931471805599453 |
+|                                            | (expt 2 2)                    |                   4 |
+|                                            | (sqrt 4)                      |                 2.0 |
+#+TBLFM: $3='(eval (car (read-from-string $2)))
+*** Strings
+| Function                         | Name                           | Output            |
+|----------------------------------+--------------------------------+-------------------|
+| Repeat a charcter                | (make-string 5 ?x)             | xxxxx             |
+| Make a string out of characters  | (string ?a ?b ?k)              | abk               |
+| Substring                        | (substring "ABCDEFG" 2 5 )     | CDE               |
+| Concatenations                   | (concat "Hello " "World")      | Hello World       |
+| Split arround spaces             | (split-string " Hello World ") | ("Hello" "World") |
+| Comparisons                      | (string= "toto" "toto")        | t                 |
+| Conversion to number             | (string-to-number "55")        | 55                |
+| Conversion from number to String | (number-to-string 55.0)        | 55.0              |
+#+TBLFM: $3='(eval (car (read-from-string $2)))
+
+*** Predicates
+Predicates test variable type, returns ~t~ or ~nil~.
+| Type            | functions        | Output |
+|-----------------+------------------+--------|
+| String          | (stringp "toto") | t      |
+| Integer         | (integerp 5)     | t      |
+| floatp          | (floatp 5.0)     | t      |
+| Any Number      | (numberp 3)      | t      |
+| Natural Numbers | (natnump 0)      | t      |
+| Zero            | (zerop 0)        | t      |
+#+TBLFM: $3='(eval (car (read-from-string $2)))
+
+*** Lists (and Con-cells)
+| Type                  | functions               | Output |
+|-----------------------+-------------------------+--------|
+| Create a list         | (setq li '(a b c ))     | #ERROR |
+| Create a list         | (setq li2 (list a b c)) | #ERROR |
+| First item            | (car '(a b c))          | a      |
+| Not first             | (cdr li2)               | #ERROR |
+| Remove 1st, return it | (pop li)                | a      |
+| Add item              | (push 'p li)            | #ERROR |
+| Last                  | (last '(a b c))         | #ERROR |
+| 1st item of fist item | (caar '(a b)(c d))      | #ERROR |
+| Append                | (append li2 '(a b c))   | #ERROR |
+#+TBLFM: $3='(eval (car (read-from-string $2)))
+
+*** Loops and Iterations
 TODO
-*** for loops
-TODO
+*** Random
+| bash                  | elisp      |
+|-----------------------+------------|
+| echo $RANDOM          | (random)   |
+| echo $(($RANDOM % 6)) | (random 6) |
+
 *** redirecting to buffer
 TODO
 ** lsp
