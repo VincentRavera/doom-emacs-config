@@ -11,6 +11,8 @@
     - [[#strings][Strings]]
     - [[#predicates][Predicates]]
     - [[#lists-and-con-cells][Lists (and Con-cells)]]
+    - [[#arrays-and-vector][Arrays and Vector]]
+    - [[#conditionnals][Conditionnals]]
     - [[#loops-and-iterations][Loops and Iterations]]
     - [[#random][Random]]
     - [[#redirecting-to-buffer][redirecting to buffer]]
@@ -82,14 +84,22 @@ Set variable is not present
 
 *** Predicates
 Predicates test variable type, returns ~t~ or ~nil~.
-| Type            | functions        | Output |
-|-----------------+------------------+--------|
-| String          | (stringp "toto") | t      |
-| Integer         | (integerp 5)     | t      |
-| floatp          | (floatp 5.0)     | t      |
-| Any Number      | (numberp 3)      | t      |
-| Natural Numbers | (natnump 0)      | t      |
-| Zero            | (zerop 0)        | t      |
+| Type            | functions           | Output |
+|-----------------+---------------------+--------|
+| String          | (stringp "toto")    | t      |
+| Integer         | (integerp 5)        | t      |
+| floatp          | (floatp 5.0)        | t      |
+| Any Number      | (numberp 3)         | t      |
+| Natural Numbers | (natnump 0)         | t      |
+| Zero            | (zerop 0)           | t      |
+| Lists           | (listp '(a b c))    | t      |
+| Lists 2         | (listp '(list a b)) | t      |
+| Concell         | (consp '(a b c))    | t      |
+| Concell 2       | (consp '(list a b)) | t      |
+| Arrays          | (arrayp [a b])      | t      |
+| Arrays          | (arrayp [a "b"])    | t      |
+| Vector          | (arrayp [a "b"])    | t      |
+| Vector          | (arrayp [a b])      | t      |
 #+TBLFM: $3='(eval (car (read-from-string $2)))
 
 *** Lists (and Con-cells)
@@ -105,9 +115,67 @@ Predicates test variable type, returns ~t~ or ~nil~.
 | 1st item of fist item | (caar '(a b)(c d))      | #ERROR |
 | Append                | (append li2 '(a b c))   | #ERROR |
 #+TBLFM: $3='(eval (car (read-from-string $2)))
+*** Arrays and Vector
+Declared differently from list
+| Note    | Functions                    | Output               |
+|---------+------------------------------+----------------------|
+| Arrays  | (setq w [abc def ghi])       | [abc def ghi]        |
+|         | (aref w 1)                   | def                  |
+|         | (aset w 0 'xyz)              | xyz                  |
+| Vectors | (vector 'def [o 77.9] 7 8.0) | [def [o 77.9] 7 8.0] |
+|         | (make-vector 3 ?Z)           | [90 90 90]           |
+|         | (vconcat w [jkl])            | [xyz def ghi jkl]    |
+#+TBLFM: $3='(eval (car (read-from-string $2)))
+*** Conditionnals
+Example of if
+#+begin_src emacs-lisp :tangle yes
+(if nil
+    (print 'true)
+  'very-false)
+#+end_src
+| Notes         | Functions               | Output |
+|---------------+-------------------------+--------|
+|               | (not nil)               | t      |
+|               | (and t t)               | t      |
+|               | (and t t t)             | t      |
+| Same as above | (if t (if t t))         | t      |
+| Same as above | (cond (t (cond (t t)))) | t      |
+|               | (or nil t)              | t      |
+|               | (or t nil nil)          | t      |
+| Same as above | (cond (t)(nil)(nil))    | t      |
+#+TBLFM: $3='(eval (car (read-from-string $2)))
 
 *** Loops and Iterations
-TODO
+**** While
+#+begin_src emacs-lisp
+(setq num 0)
+(while (< num 5)
+  (print (format "Iteration %d." num))
+  (setq num (1+ num)))
+(print num)
+#+end_src
+**** do list
+#+begin_src emacs-lisp :tangle yes
+#+end_src
+
+#+RESULTS:
+**** loop
+***** for
+#+begin_src emacs-lisp :tangle yes
+(loop for i in '(1 0 2) collect (* i i))
+#+end_src
+
+#+RESULTS:
+| 1 | 0 | 4 |
+
+#+begin_src emacs-lisp :tangle yes
+(setq seq "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+(loop for i across seq count i)
+#+end_src
+
+#+RESULTS:
+: 26
+
 *** Random
 | bash                  | elisp      |
 |-----------------------+------------|
