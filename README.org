@@ -5,6 +5,18 @@
 - [[#description][Description]]
 - [[#notes][Notes]]
   - [[#dired][Dired]]
+    - [[#enter-a-directoryfile][Enter a directory/file]]
+    - [[#move-to-parent-folder][move to parent folder]]
+    - [[#create-a-directory][Create a directory]]
+    - [[#create-a-file][Create a file]]
+    - [[#marks][Marks]]
+    - [[#sorting-by-namedate][Sorting by name/DATE]]
+    - [[#permissions][Permissions]]
+    - [[#ownership][Ownership]]
+    - [[#selection][Selection]]
+    - [[#copy-file][Copy file]]
+    - [[#move-file-rename][Move file (rename)]]
+    - [[#quick-rename-a-file][Quick rename a file]]
   - [[#eshell][eshell]]
     - [[#variables][Variables]]
     - [[#math][Math]]
@@ -26,7 +38,46 @@
 This repo contains my doom config
 * Notes
 ** Dired
-Sifloat-ence dired does not have a ~?~ prompt, here i will enuerates commands.
+Since dired does not have a ~?~ prompt, here i will enuerates commands.
+*** Enter a directory/file
+~Enter~
+*** move to parent folder
+~-~
+*** Create a directory
+~+~
+*** Create a file
+~SPC-.~
+*** Marks
+**** For deletion
+~d~
+**** Execute
+~x~
+*** Sorting by name/DATE
+~o~
+*** Permissions
+~M~
+*** Ownership
+~O~
+*** Selection
+**** Select all directories
+~*/~
+**** invert selection
+~t~
+**** Select an item
+~m~
+**** Cancel selection
+~U~
+*** Copy file
+~C~
+I an other dired Buffer is open, copy location is autofilled
+Act on selections, if no selections, act on the file where the crusor is.
+*** Move file (rename)
+~R~
+I an other dired Buffer is open, copy location is autofilled
+Act on selections, if no selections, act on the file where the crusor is.
+*** Quick rename a file
+~i~
+go to insertion mode and rename file and save buffer
 ** eshell
 Changes a lot from bash.
 config lies in the ~eshell/~ directory
