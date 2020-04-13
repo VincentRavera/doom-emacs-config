@@ -234,7 +234,7 @@ Example of if
 | echo $(($RANDOM % 6)) | (random 6) |
 
 *** redirecting to buffer
-TODO
+C-c M-b
 ** lsp
 lsp is used for language completions
 *** python
