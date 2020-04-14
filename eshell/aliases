@@ -13,3 +13,4 @@ alias e emacsclient $*
 alias vi emacsclient $*
 alias vim emacsclient $*
 alias nvim emacsclient $*
+alias kapitan docker run -t -u ${id -u} --rm -v ${pwd}:/src:delegated deepmind/kapitan $*

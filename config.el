@@ -134,3 +134,6 @@
 ;;
 (after! lsp-java
   (setq lsp-java-server-install-dir "/home/m0b1us/Applications/eclipse/lsp"))
+
+;; Eshell Environ
+(setenv "EDITOR" "emacsclient")

@@ -80,6 +80,7 @@ Act on selections, if no selections, act on the file where the crusor is.
 go to insertion mode and rename file and save buffer
 ** eshell
 Changes a lot from bash.
+Link to wiki is: https://www.emacswiki.org/emacs/CategoryEshell
 config lies in the ~eshell/~ directory
 I will list all the tips and tricks i find here
 I always use () becaus elisp require them, but in eshell you can drop the outer most ().
@@ -227,6 +228,28 @@ Example of if
 #+RESULTS:
 : 26
 
+Examples shown in : https://www.emacswiki.org/emacs/EshellForLoop
+#+BEGIN_SRC bash
+# 1
+for i in *.txt
+do
+    rm $i
+    git status
+done
+#2
+for i in 1 2 3 4; do echo $i ; done
+#3
+for i in $(find -name .toto); do cp -f /tmp/toto $i ; done
+#+END_SRC
+#+BEGIN_SRC eshell
+;; 1
+for i in *.txt { rm $i ; git status }
+;; 2
+for i in 1 2 3 4 {echo $i}
+;; 3
+for i in {find -name .toto} {cp -f /tmp/toto/ $i}
+#+END_SRC
+
 *** Random
 | bash                  | elisp      |
 |-----------------------+------------|
@@ -234,7 +257,10 @@ Example of if
 | echo $(($RANDOM % 6)) | (random 6) |
 
 *** redirecting to buffer
-C-c M-b
+#+BEGIN_SRC eshell
+echo "Hello" > #<buffer toto>
+#+END_SRC
+You can also interactively choose a buffer with ~C-c M-b~ command ~eshell-insert-buffer-name~
 ** lsp
 lsp is used for language completions
 *** python
