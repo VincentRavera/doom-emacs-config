@@ -20,12 +20,15 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 14))
 (add-to-list 'default-frame-alist
-                       '(font . "DejaVu Sans Mono-14"))
+                       '(font . "DejaVu Sans Mono-12"))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. These are the defaults.
-(setq doom-theme 'doom-gruvbox)
+;; 'doom-gruvbox
+;; 'doom-sourcerer
+;; 'doom-horizon
+(setq doom-theme 'doom-sourcerer)
 
 ;; If you intend to use org, it is recommended you change this!
 (setq org-directory "~/workspace/wiki/VRA-Notes/")
@@ -134,6 +137,12 @@
 ;;
 (after! lsp-java
   (setq lsp-java-server-install-dir "/home/m0b1us/Applications/eclipse/lsp"))
+
+;; Default browser
+(setq browse-url-browser-function 'eww-browse-url)
+
+;; Default grep command
+(setq grep-command "grep --color -nriH --null -e ")
 
 ;; Eshell Environ
 (setenv "EDITOR" "emacsclient")

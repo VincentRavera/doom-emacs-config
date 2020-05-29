@@ -32,6 +32,6 @@
         org-journal-date-prefix "* "
         org-journal-date-format "%Y/%m/%d"
         org-journal-time-prefix "** "
-        org-journal-time-format "%Y%m: "))
+        org-journal-time-format "%Hh%Mm: "))
 
 (load! "org-keybindings.el")
