@@ -146,3 +146,7 @@
 
 ;; Eshell Environ
 (setenv "EDITOR" "emacsclient")
+
+;; undo
+  (after! undo-tree
+    (setq undo-tree-auto-save-history nil))

@@ -19,10 +19,12 @@
        ;;japanese
 
        :completion
-       company           ; the ultimate code completion backend
+       (company           ; the ultimate code completion backend
+        +childframe)
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
-       ivy               ; a search engine for love and life
+       (ivy               ; a search engine for love and life
+        +childframe)
 
        :ui
        ;;deft              ; notational velocity for Emacs
@@ -32,13 +34,15 @@
        ;;fill-column       ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        ;;hydra
-       ;;indent-guides     ; highlighted indent columns
+       indent-guides     ; highlighted indent columns
        ;;minimap           ; show a map of the code on the side
        modeline          ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink the current line after jumping
        ;;neotree           ; a project drawer, like NERDTree for vim
        ophints           ; highlight the region an operation acts on
-       (popup +defaults)   ; tame sudden yet inevitable temporary windows
+       (popup            ; tame sudden yet inevitable temporary windows
+        +all             ; catch all popups that start with an asterix
+        +defaults)       ; default popup rules
        ;;pretty-code       ; ligatures or substitute text with pretty symbols
        ;;tabs              ; an tab bar for Emacs
        treemacs          ; a project drawer, like neotree but cooler
@@ -67,7 +71,8 @@
        dired             ; making dired pretty [functional]
        electric          ; smarter, keyword-based electric-indent
        ibuffer         ; interactive buffer management
-       undo              ; persistent, smarter undo for your inevitable mistakes
+       (undo              ; persistent, smarter undo for your inevitable mistakes
+        +tree)
        vc                ; version-control and Emacs, sitting in a tree
 
        :term
@@ -86,11 +91,12 @@
        debugger          ; FIXME stepping through code, to help you add bugs
        ;;direnv
        docker
-       ;;editorconfig      ; let someone else argue about tabs vs spaces
+       editorconfig      ; let someone else argue about tabs vs spaces
        ;;ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
        ;;gist              ; interacting with github gists
-       lookup              ; navigate your code and its documentation
+       (lookup              ; navigate your code and its documentation
+        +docsets)        ; ...or in Dash docsets locally
        lsp
        ;;macos             ; MacOS-specific commands
        magit             ; a git porcelain for Emacs
@@ -98,7 +104,7 @@
        ;;pass              ; password manager for nerds
        ;;pdf               ; pdf enhancements
        ;;prodigy           ; FIXME managing external services & code builders
-       ;;rgb               ; creating color strings
+       rgb               ; creating color strings
        ;;taskrunner        ; taskrunner for all your projects
        ;;terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
@@ -107,7 +113,7 @@
        :lang
        ;;agda              ; types of types of types of types...
        ;;assembly          ; assembly for fun or debugging
-       ;;cc                ; C/C++/Obj-C madness
+       cc                ; C/C++/Obj-C madness
        ;;clojure           ; java with a lisp
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
