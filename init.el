@@ -27,7 +27,7 @@
         +childframe)
 
        :ui
-       ;;deft              ; notational velocity for Emacs
+       deft              ; notational velocity for Emacs
        doom              ; what makes DOOM look the way it does
        doom-dashboard    ; a nifty splash screen for Emacs
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
@@ -68,7 +68,9 @@
        ;;word-wrap         ; soft wrapping with language-aware indent
 
        :emacs
-       dired             ; making dired pretty [functional]
+       (dired             ; making dired pretty [functional]
+        +icons
+        +ranger)
        electric          ; smarter, keyword-based electric-indent
        ibuffer         ; interactive buffer management
        (undo              ; persistent, smarter undo for your inevitable mistakes
@@ -134,7 +136,8 @@
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ;
        ;;json              ; At least it ain't XML
-       (java +lsp) ; the poster child for carpal tunnel syndrome
+       (java             ; the poster child for carpal tunnel syndrome
+        +lsp)
        ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
@@ -153,6 +156,7 @@
         ;;+jupyter        ; ipython/jupyter support for babel
         ;;+pandoc          ; export-with-pandoc support
         ;;+pomodoro        ; be fruitful with the tomato technique
+        +roam
         +journal
         +present)        ; using org-mode for presentations
        ;;perl              ; write code no one else can comprehend

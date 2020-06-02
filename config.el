@@ -31,7 +31,11 @@
 (setq doom-theme 'doom-sourcerer)
 
 ;; If you intend to use org, it is recommended you change this!
-(setq org-directory "~/workspace/wiki/VRA-Notes/")
+(setq org-directory "~/Documents/ORG-ROAM")
+;; roam
+(setq org-roam-directory "~/Documents/ORG-ROAM")
+;; (setq org-roam-graph-viewer "")
+
 
 ;; If you want to change the style of line numbers, change this to `relative' or
 ;; `nil' to disable it:

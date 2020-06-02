@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: roam tags
+# key: rtags
+# --
+#+ROAM_TAGS: $1
