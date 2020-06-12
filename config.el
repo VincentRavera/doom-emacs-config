@@ -150,6 +150,14 @@
 
 ;; Eshell Environ
 (setenv "EDITOR" "emacsclient")
+;; (defvar eshell-visual-commands nil)
+;; (defvar eshell-visual-options nil)
+;; (defvar eshell-visual-subcommands nil)
+(after! (:and eshell em-term)
+  (add-to-list 'eshell-visual-commands "top")
+  (add-to-list 'eshell-visual-options '("git" "--help"))
+  (add-to-list 'eshell-visual-subcommands '("git" "log" "diff" "show"))
+  (setq eshell-destroy-buffer-when-process-dies nil))
 
 ;; undo
   (after! undo-tree

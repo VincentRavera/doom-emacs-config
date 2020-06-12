@@ -15,8 +15,3 @@ alias vim emacsclient $*
 alias nvim emacsclient $*
 # Docker Aliases
 alias kapitan docker run -t -u ${id -u} --rm -v ${pwd}:/src:delegated deepmind/kapitan $*
-# Tramp editing
-## Sudo find file
-alias sf find-file /sudo::${pwd}/$1
-## remote absolute editing
-# alias rf echo ${pwd}$1(:s,^\(/sudo:.*:.*/\).*,\1,)
