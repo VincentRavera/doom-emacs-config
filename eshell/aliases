@@ -1,7 +1,7 @@
 # more at https://www.masteringemacs.org/article/complete-guide-mastering-eshell
 # Defaults
 alias q exit
-alias f find-file $1
+alias f me/remote-find-file $1
 alias d dired $1
 alias bd eshell-up $1
 alias rg rg --color=always $*
@@ -15,3 +15,7 @@ alias vim emacsclient $*
 alias nvim emacsclient $*
 # Docker Aliases
 alias kapitan docker run -t -u ${id -u} --rm -v ${pwd}:/src:delegated deepmind/kapitan $*
+# edition des fich
+alias lf find-file $1
+alias ff find-file $1
+alias rf me/remote-find-file $1
