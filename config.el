@@ -96,7 +96,7 @@
 ;; (Un-tested, do not use) Create a venv for your project:
 ;; (Un-tested, do not use) mkvirtualenv $NAME_OF_THE_PROJECT
 ;; (Un-tested, do not use) workon $NAME_OF_THE_PROJECT
-;; (Un-tested, do not use) (workon) python -m pip install node pytest pyflakes isort python-language-server ptvsd
+;; (Un-tested, do not use) (workon) python -m pip install node pytest pyflakes isort python-language-server ptvsd mypy
 ;;
 ;; Starting the IDE
 ;;
@@ -159,10 +159,16 @@
   (add-to-list 'eshell-visual-subcommands '("git" "log" "diff" "show"))
   (setq eshell-destroy-buffer-when-process-dies nil)
 
-  (defun me/remote-find-file (input-file-name)
-    "open remotly the file you want"
+  (defun me/eshell/remote-find-file (input-file-name)
+    "open remotly the absolut file you want"
     (let ((prefix-tramp (file-remote-p (eshell/pwd))))
-      (find-file (concat prefix-tramp input-file-name)))))
+      (find-file (concat prefix-tramp input-file-name))))
+
+  (defun me/eshell/remote-change-directory (input-dir-name)
+    "cd remotly the aboslute path folder you want"
+    (let ((prefix-tramp (file-remote-p (eshell/pwd))))
+      (eshell/cd (concat prefix-tramp input-dir-name)))))
+
 
 ;; get TRAMP prefix
 ;; (tramp-handle-file-remote-p $PWD) => /sudo:root@localhost:
