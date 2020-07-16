@@ -20,7 +20,7 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 14))
 (add-to-list 'default-frame-alist
-                       '(font . "DejaVu Sans Mono-12"))
+             '(font . "DejaVu Sans Mono-12"))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -104,21 +104,21 @@
 
 (map! :leader
       (:prefix ("l" . "lsp") ;; LSP UI/DAP
-        :desc "lsp start server" "l" #'lsp
-        :desc "errors in projects" "e" #'lsp-treemacs-errors-list
-        :desc "inline info toggle" "i" #'lsp-ui-sideline-toggle-symbols-info
-        :desc "Documentation" "D" #'lsp-ui-doc-glance
-        :desc "outline" "o" #'lsp-ui-imenu
-        (:prefix ("d" . "debug") ;; DAP-debug
+       :desc "lsp start server" "l" #'lsp
+       :desc "errors in projects" "e" #'lsp-treemacs-errors-list
+       :desc "inline info toggle" "i" #'lsp-ui-sideline-toggle-symbols-info
+       :desc "Documentation" "D" #'lsp-ui-doc-glance
+       :desc "outline" "o" #'lsp-ui-imenu
+       (:prefix ("d" . "debug") ;; DAP-debug
         :desc "start debug" "d" #'dap-debug
         :desc "breakpoint toogle" "d" #'dap-breakpoint-toggle
         :desc "edit debug template" "t" #'dap-debug
         )
-        (:prefix ("s" . "search") ;; LSP search
+       (:prefix ("s" . "search") ;; LSP search
         :desc "definition" "d" #'lsp-ui-peek-find-definitions
         :desc "implementations" "i" #'lsp-ui-peek-find-implementation
         :desc "references" "r" #'lsp-ui-peek-find-references
-      )))
+        )))
 
 
 ;; See https://github.com/murphytalk/doom.d for tips and trick
@@ -167,7 +167,13 @@
   (defun me/eshell/remote-change-directory (input-dir-name)
     "cd remotly the aboslute path folder you want"
     (let ((prefix-tramp (file-remote-p (eshell/pwd))))
-      (eshell/cd (concat prefix-tramp input-dir-name)))))
+      (eshell/cd (concat prefix-tramp input-dir-name))))
+
+  (defun r ()
+    "outputs the remote path of pwd"
+    ;; usecase: ls $(r)/etc/hosts
+    (file-remote-p (eshell/pwd)))
+  )
 
 
 ;; get TRAMP prefix
