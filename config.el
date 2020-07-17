@@ -173,14 +173,25 @@
     "outputs the remote path of pwd"
     ;; usecase: ls $(r)/etc/hosts
     (file-remote-p (eshell/pwd)))
+
+  (eshell/addpath "/opt/maven/apache-maven-3.6.1/bin")
   )
 
 
 ;; get TRAMP prefix
 ;; (tramp-handle-file-remote-p $PWD) => /sudo:root@localhost:
 
+(after! tramp
+  (defun me/tramp/clear ()
+    "Shuts down Tramp"
+    (interactive)
+    (tramp-cleanup-all-connections)
+    (tramp-cleanup-all-buffers))
+  )
+
 
 
 ;; undo
 (after! undo-tree
-  (setq undo-tree-auto-save-history nil))
+  (setq undo-tree-auto-save-history nil)
+  )
