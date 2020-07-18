@@ -148,39 +148,10 @@
 ;; Default grep command
 (setq grep-command "grep --color -nriH --null -e ")
 
-;; Eshell Environ
-(setenv "EDITOR" "emacsclient")
-;; (defvar eshell-visual-commands nil)
-;; (defvar eshell-visual-options nil)
-;; (defvar eshell-visual-subcommands nil)
-(after! (:and eshell em-term)
-  (add-to-list 'eshell-visual-commands "top")
-  (add-to-list 'eshell-visual-options '("git" "--help"))
-  (add-to-list 'eshell-visual-subcommands '("git" "log" "diff" "show"))
-  (setq eshell-destroy-buffer-when-process-dies nil)
+;; loads Eshell config
+(load! "./eshell/config.el")
 
-  (defun me/eshell/remote-find-file (input-file-name)
-    "open remotly the absolut file you want"
-    (let ((prefix-tramp (file-remote-p (eshell/pwd))))
-      (find-file (concat prefix-tramp input-file-name))))
-
-  (defun me/eshell/remote-change-directory (input-dir-name)
-    "cd remotly the aboslute path folder you want"
-    (let ((prefix-tramp (file-remote-p (eshell/pwd))))
-      (eshell/cd (concat prefix-tramp input-dir-name))))
-
-  (defun r ()
-    "outputs the remote path of pwd"
-    ;; usecase: ls $(r)/etc/hosts
-    (file-remote-p (eshell/pwd)))
-
-  (eshell/addpath "/opt/maven/apache-maven-3.6.1/bin")
-  )
-
-
-;; get TRAMP prefix
-;; (tramp-handle-file-remote-p $PWD) => /sudo:root@localhost:
-
+;; TRAMP config
 (after! tramp
   (defun me/tramp/clear ()
     "Shuts down Tramp"
@@ -188,8 +159,6 @@
     (tramp-cleanup-all-connections)
     (tramp-cleanup-all-buffers))
   )
-
-
 
 ;; undo
 (after! undo-tree
