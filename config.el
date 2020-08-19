@@ -151,6 +151,9 @@
 ;; loads Eshell config
 (load! "./eshell/config.el")
 
+;; loads Kubernetes config
+(load! "./kubernetes/config.el")
+
 ;; TRAMP config
 (after! tramp
   (defun me/tramp/clear ()
