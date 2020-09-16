@@ -11,10 +11,11 @@
         :desc "all" "r" #'kubernetes-refresh
         :desc "deploys" "d" #'kubernetes-deployments-refresh-now
         :desc "pods" "p" #'kubernetes-pods-refresh-now
-        :desc "statefulsets" "p" #'kubernetes-statefulsets-refresh-now
+        :desc "statefulsets" "s" #'kubernetes-statefulsets-refresh-now
         )
        (:prefix ("d" . "display") ;; Display
         :desc "ingress" "i" #'kubernetes-display-ingress
+        :desc "pod" "p" #'kubernetes-display-pod
         :desc "configmaps" "c" #'kubernetes-display-configmap
         :desc "jobs" "c" #'kubernetes-display-job
         :desc "node" "n" #'kubernetes-display-node

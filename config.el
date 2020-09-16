@@ -154,6 +154,9 @@
 ;; loads Kubernetes config
 (load! "./kubernetes/config.el")
 
+;; loads PLANTUML config
+(load! "./plantuml/config.el")
+
 ;; TRAMP config
 (after! tramp
   (defun me/tramp/clear ()

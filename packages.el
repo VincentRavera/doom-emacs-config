@@ -55,3 +55,4 @@
 (package! pyenv-mode)
 (package! kubernetes)
 (package! kubernetes-evil)
+(package! plantuml-mode)
