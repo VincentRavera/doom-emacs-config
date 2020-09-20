@@ -56,3 +56,4 @@
 (package! kubernetes)
 (package! kubernetes-evil)
 (package! plantuml-mode)
+(package! jsonnet-mode)
