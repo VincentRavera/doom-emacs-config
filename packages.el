@@ -52,7 +52,7 @@
 ;(package! builtin-package :recipe (:branch "develop"))
 (package! lsp-ui)
 ;; (package! lsp-docker)
-(package! pyenv-mode)
+;; (package! pyenv-mode)
 (package! kubernetes)
 (package! kubernetes-evil)
 (package! plantuml-mode)

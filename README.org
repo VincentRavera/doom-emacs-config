@@ -17,8 +17,11 @@
     - [[#copy-file][Copy file]]
     - [[#move-file-rename][Move file (rename)]]
     - [[#quick-rename-a-file][Quick rename a file]]
-  - [[#eshell][eshell]]
+  - [[#lisp][LISP]]
     - [[#variables][Variables]]
+    - [[#functions][functions]]
+  - [[#eshell][eshell]]
+    - [[#variables-1][Variables]]
     - [[#math][Math]]
     - [[#strings][Strings]]
     - [[#predicates][Predicates]]
@@ -78,6 +81,39 @@ Act on selections, if no selections, act on the file where the crusor is.
 *** Quick rename a file
 ~i~
 go to insertion mode and rename file and save buffer
+** LISP
+"Everything is a list"
+"the first argument is special since it is interpreted"
+put the cursor at the end of the line of the code and,
+use ~C-x C-e~ to interpret lisp.
+*** Variables
+#+BEGIN_SRC elisp
+(set 'toto "tutu")
+(setq tutu "toto")
+#+END_SRC
+**** lists
+if a ~'~ is before the parenthesis then this is a list.
+the first element is no longer interpreted
+#+BEGIN_SRC elisp
+(setq myli '("toto" "tutu" "tata"))
+(setq anotherli '("tata" "titi" myli))
+(print myli)
+(print anotherli)
+(while anotherli
+  (print (car anotherli))
+  (setq anotherli (cdr anotherli)))
+#+END_SRC
+*** functions
+**** lists
+***** car and cdr
+car will return the first element od a list.
+cdr will return the list without the first element.
+#+BEGIN_SRC elisp
+(setq myli '("toto" "tutu" "tata"))
+(print myli)
+(car myli)
+(cdr myli)
+#+END_SRC
 ** eshell
 Changes a lot from bash.
 Link to wiki is: https://www.emacswiki.org/emacs/CategoryEshell

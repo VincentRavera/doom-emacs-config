@@ -1,0 +1,12 @@
+#+TITLE: Uml Example
+
+
+* Basic plantuml test
+#+BEGIN_SRC plantuml :file example.png
+title Authentication Sequence
+actor a
+database b
+
+a -> b
+o <-> b
+#+END_SRC

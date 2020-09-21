@@ -69,7 +69,7 @@
 
 ;; Avy
 ;; g s SPC for all windows
-;; (setq avy-all-windows t)
+(setq avy-all-windows t)
 
 ;; Spell
 ;; (after! flyspell
@@ -84,13 +84,15 @@
 
 ;; Python - Dependency management
 ;;
-;; Prerequisites:
+;; Pyenv
 ;;
 ;; Install pyenv : https://github.com/pyenv/pyenv
 ;; Then create a recent and global python:
 ;; pyenv install 3.7.6
 ;; pyenv global 3.7.6
-;; Then add the plugin from: https://github.com/pyenv/pyenv-virtualenv
+;;
+;; Virtualenvwrapper
+;; plugin from: https://github.com/pyenv/pyenv-virtualenv
 ;; You can now create a venv for your projects
 ;; (Un-tested, do not use) Install VirtualEnvWrapper: https://virtualenvwrapper.readthedocs.io/en/latest/install.html
 ;; (Un-tested, do not use) Create a venv for your project:
@@ -141,6 +143,8 @@
 ;;
 (after! lsp-java
   (setq lsp-java-server-install-dir "/home/m0b1us/Applications/eclipse/lsp"))
+
+(load! "./go/config.el")
 
 ;; Default browser
 (setq browse-url-browser-function 'eww-browse-url)
