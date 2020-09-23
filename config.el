@@ -122,6 +122,14 @@
         :desc "references" "r" #'lsp-ui-peek-find-references
         )))
 
+;; add current buffer to workspace
+(map! :leader
+      (:prefix-map ("b" . "buffer")
+       (:prefix ("w" . "workspace")
+        :desc "Add buffer to workspace" "a" #'persp-add-buffer
+        :desc "Add buffer to workspace" "d" #'persp-remove-buffer)))
+
+(load! "./dap/config.el")
 
 ;; See https://github.com/murphytalk/doom.d for tips and trick
 ;;
