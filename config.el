@@ -127,7 +127,10 @@
       (:prefix-map ("b" . "buffer")
        (:prefix ("w" . "workspace")
         :desc "Add buffer to workspace" "a" #'persp-add-buffer
-        :desc "Add buffer to workspace" "d" #'persp-remove-buffer)))
+        :desc "Delete buffer from workspace" "d" #'persp-remove-buffer))
+      (:prefix-map ("TAB" . "workspace")
+        :desc "Add buffer to workspace" "a" #'persp-add-buffer
+        :desc "Delete buffer from workspace" "D" #'persp-remove-buffer))
 
 (load! "./dap/config.el")
 
