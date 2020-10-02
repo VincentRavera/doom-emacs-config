@@ -152,13 +152,12 @@
 ;; lsp-ui-imenu (Show outline of code)
 ;; lsp-treemacs-error-list (list errors in project)
 ;;
-(after! lsp-java
-  (setq lsp-java-server-install-dir "/home/m0b1us/Applications/eclipse/lsp"))
+(load! "./java/config.el")
 
 (load! "./go/config.el")
 
 ;; Default browser
-(setq browse-url-browser-function 'eww-browse-url)
+(setq browse-url-browser-function 'browse-url-firefox)
 
 ;; Default grep command
 (setq grep-command "grep --color -nriH --null -e ")

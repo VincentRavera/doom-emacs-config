@@ -93,7 +93,8 @@
 
        :tools
        ansible
-       debugger          ; FIXME stepping through code, to help you add bugs
+       (debugger          ; FIXME stepping through code, to help you add bugs
+        +lsp)
        ;;direnv
        docker
        editorconfig      ; let someone else argue about tabs vs spaces
@@ -147,6 +148,7 @@
        ;;idris             ;
        ;;json              ; At least it ain't XML
        (java             ; the poster child for carpal tunnel syndrome
+        +meghanada
         +lsp)
        ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
