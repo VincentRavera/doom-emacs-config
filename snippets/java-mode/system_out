@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: System Out
+# key: syso
+# --
+System.out.println($1);
