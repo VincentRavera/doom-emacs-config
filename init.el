@@ -20,12 +20,11 @@
        ;;layout            ; auie,ctsrnm is the superior home row
 
        :completion
-       (company           ; the ultimate code completion backend
-        +childframe)
+       company           ; the ultimate code completion backend
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
-       (ivy               ; a search engine for love and life
-        +childframe)
+       ivy               ; a search engine for love and life
+        ;; +childframe)
 
        :ui
        deft              ; notational velocity for Emacs
@@ -123,8 +122,8 @@
        :lang
        ;;agda              ; types of types of types of types...
        ;;assembly          ; assembly for fun or debugging
-       (cc                ; C/C++/Obj-C madness
-        +lsp)
+       cc                ; C/C++/Obj-C madness
+        ;; +lsp)
        (clojure           ; java with a lisp
         +lsp)
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
@@ -139,7 +138,7 @@
        ;;erlang            ; an elegant language for a more civilized age
        ;;ess               ; emacs speaks statistics
        ;;faust             ; dsp, but you get to keep your soul
-       ;;fsharp           ; ML stands for Microsoft's Language
+       ;;fsharp            ; ML stands for Microsoft's Language
        ;;fstar             ; (dependent) types and (monadic) effects and Z3
        ;;gdscript          ; the language you waited for
        (go +lsp)         ; the hipster dialect
@@ -148,7 +147,7 @@
        ;;idris             ;
        ;;json              ; At least it ain't XML
        (java             ; the poster child for carpal tunnel syndrome
-        +meghanada
+        ;; +meghanada
         +lsp)
        ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB

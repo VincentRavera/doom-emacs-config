@@ -136,6 +136,7 @@
         :desc "Delete buffer from workspace" "D" #'persp-remove-buffer))
 
 (load! "./dap/config.el")
+(load! "./lsp/config.el")
 
 ;; See https://github.com/murphytalk/doom.d for tips and trick
 ;;
