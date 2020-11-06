@@ -188,3 +188,6 @@
 (after! undo-tree
   (setq undo-tree-auto-save-history nil)
   )
+
+;; Piper itegration
+(load! "./piper/config.el")
