@@ -9,7 +9,7 @@
 ;;      - Create a minibuffer with a pscript inited to edit the current buffer
 ;;
 (use-package! piper
-  :load-path "~/workspace/elisp/emacs-piper")
+  :load-path "~/.emacs.d/.local/straight/repos/emacs-piper")
 
 (map! :leader
       (:prefix ("|" . "Pipe") ;; Piper Tool
