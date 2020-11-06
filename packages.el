@@ -57,3 +57,6 @@
 (package! kubernetes-evil)
 (package! plantuml-mode)
 (package! jsonnet-mode)
+;; (package! piper
+;;   :recipe (:host gitlab :repo "howardabrams/emacs-piper"
+;;   :files ("*.el")))
