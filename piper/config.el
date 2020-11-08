@@ -19,3 +19,12 @@
        :desc "Buffer" "b" #'piper-user-interface
        ;; :desc "Scripting Buffer" "s" #'piper-pop-up-script-buffer
        ))
+
+(map! :leader
+      (:prefix ("a" . "Pipe") ;; Piper Tool
+       :desc "Local" "a" #'piper
+       :desc "Directories" "d" #'piper-other
+       :desc "Remote" "r" #'piper-remote
+       :desc "Buffer" "b" #'piper-user-interface
+       ;; :desc "Scripting Buffer" "s" #'piper-pop-up-script-buffer
+       ))
