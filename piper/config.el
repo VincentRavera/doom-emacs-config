@@ -4,9 +4,6 @@
 ;;
 ;; Official Package: https://gitlab.com/howardabrams/emacs-piper.git
 ;;
-;; Ideas:
-;; - Minibuffers such as lsp edit template or yassnippet
-;;      - Create a minibuffer with a pscript inited to edit the current buffer
 ;;
 (use-package! piper
   :load-path "~/.emacs.d/.local/straight/repos/emacs-piper")
@@ -17,7 +14,7 @@
        :desc "Directories" "d" #'piper-other
        :desc "Remote" "r" #'piper-remote
        :desc "Buffer" "b" #'piper-user-interface
-       ;; :desc "Scripting Buffer" "s" #'piper-pop-up-script-buffer
+       :desc "Scripting Buffer" "p" #'piper-popen-piper-script
        ))
 
 (map! :leader
@@ -26,5 +23,5 @@
        :desc "Directories" "d" #'piper-other
        :desc "Remote" "r" #'piper-remote
        :desc "Buffer" "b" #'piper-user-interface
-       ;; :desc "Scripting Buffer" "s" #'piper-pop-up-script-buffer
+       :desc "Scripting Buffer" "p" #'piper-popen-piper-script
        ))

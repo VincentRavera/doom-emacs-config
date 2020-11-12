@@ -58,4 +58,4 @@
 (package! plantuml-mode)
 (package! jsonnet-mode)
 (package! emacs-piper
-  :recipe (:host gitlab :repo "VincentRavera/emacs-piper" :branch "awk-integrations"))
+  :recipe (:host gitlab :repo "VincentRavera/emacs-piper" :branch "develop"))

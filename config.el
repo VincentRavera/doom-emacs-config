@@ -185,6 +185,7 @@
   )
 
 ;; undo
+(setq global-undo-tree-mode t)
 (after! undo-tree
   (setq undo-tree-auto-save-history nil)
   )
