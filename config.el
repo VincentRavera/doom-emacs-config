@@ -133,7 +133,8 @@
         :desc "Delete buffer from workspace" "d" #'persp-remove-buffer))
       (:prefix-map ("TAB" . "workspace")
         :desc "Add buffer to workspace" "a" #'persp-add-buffer
-        :desc "Delete buffer from workspace" "D" #'persp-remove-buffer))
+        :desc "Delete buffer from workspace" "D" #'persp-remove-buffer
+        :desc "Switch Workspace" "SPC" #'+workspace/switch-to))
 
 (load! "./dap/config.el")
 (load! "./lsp/config.el")
