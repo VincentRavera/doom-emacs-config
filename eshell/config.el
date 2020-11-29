@@ -35,6 +35,8 @@
       ;; add personal keybindings for eshell
       (map! :map eshell-mode-map
             "C-c r"   #'me/eshell/insert-remote-prefix)
+      (map! :map eshell-mode-map
+            "C-c C-r"   #'counsel-esh-history)
       )
     )
   )

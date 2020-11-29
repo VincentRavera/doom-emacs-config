@@ -167,6 +167,9 @@
 ;; Default grep command
 (setq grep-command "grep --color -nriH --null -e ")
 
+;; loads Terminals config
+(load! "./term/config.el")
+
 ;; loads Eshell config
 (load! "./eshell/config.el")
 
@@ -191,5 +194,5 @@
   (setq undo-tree-auto-save-history nil)
   )
 
-;; Piper itegration
+;; Piper integration
 (load! "./piper/config.el")
