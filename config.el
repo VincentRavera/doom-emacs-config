@@ -101,7 +101,7 @@
 ;; (Un-tested, do not use) Create a venv for your project:
 ;; (Un-tested, do not use) mkvirtualenv $NAME_OF_THE_PROJECT
 ;; (Un-tested, do not use) workon $NAME_OF_THE_PROJECT
-;; (Un-tested, do not use) (workon) python -m pip install node pytest pyflakes isort python-language-server ptvsd mypy
+;; (Un-tested, do not use) (workon) python -m pip install node pytest pyflakes isort python-language-server ptvsd mypy flake8
 ;;
 ;; Starting the IDE
 ;;
