@@ -45,6 +45,8 @@
           ("@task" . ?E)
           ("@work" . ?W)
           ("@idea" . ?i)))
+  (setq +org-capture-todo-file "~/Documents/ORG-ROAM/Work-data/todo.org"
+        )
   )
 
 ;; Agenda
