@@ -1,4 +1,89 @@
 ;; Org Configuration file
+;; GLOBALS need for lazy
+;; ORG - ROOT
+(setq org-directory "~/Documents/ORG"
+      ;; GLOBAL NOTES
+      me/org-note-root  (concat org-directory "/NOTES")
+      ;; GLOBAL AGENDA
+      me/org-agenda-root (concat org-directory "/AGENDA")
+      ;; DEFT
+      deft-directory org-directory
+      deft-recursive t
+      ;; ROAM
+      org-roam-directory me/org-note-root
+      )
+;; ORG - Files
+(setq +org-capture-notes-file (concat me/org-note-root "/Notes.org")
+      +org-capture-work-notes-file (concat me/org-note-root "/Work/Notes.org")
+
+      +org-capture-todo-file (concat me/org-agenda-root "/Todo.org")
+      +org-capture-work-todo-file (concat me/org-agenda-root "/Work/Todo.org")
+      org-agenda-files
+      (list +org-capture-todo-file                                    ;; For Active Tasks
+            (eval (concat me/org-agenda-root "/Archive.org"))          ;; For Older Tasks
+            +org-capture-work-todo-file                               ;; For Active Tasks
+            (eval (concat me/org-agenda-root "/Work/Archive.org"))     ;; For Older Tasks
+            )
+
+      ;; org-agenda-text-search-extra-files
+      ;; '(agenda-archives
+      ;;   "~/workspace/wiki/VRA-Notes/2020/Notes-2020.org"
+      ;;   "~/workspace/wiki/VRA-Notes/2019/DT4.org"
+      ;;   "~/workspace/wiki/VRA-Notes/2020/2020-01.org"
+      ;;   "~/workspace/wiki/VRA-Notes/2020/2020-02.org"
+      ;;   "~/workspace/wiki/VRA-Notes/2020/2020-03.org"
+      ;;   "~/workspace/wiki/VRA-Notes/2020/2020-04.org"
+      ;;   "~/workspace/wiki/VRA-Notes/2020/2020-05.org"
+      ;; )
+      )
+;; END GLOBAL
+
+;; CAPTURE
+(after! org-capture
+  (setq org-capture-templates
+        '(("t" "Personal todo" entry
+           (file+headline +org-capture-todo-file "Inbox")
+           "* TODO %?\n%i\n%a" :prepend t)
+
+          ("n" "Personal notes" entry
+           (file+headline +org-capture-notes-file "Inbox")
+           "* %u %?\n%i\n%a" :prepend t)
+
+          ;; Work Templates
+          ("w" "Templates for work")
+          ("wt" "Project-local todo" entry
+           (file+headline +org-capture-work-todo-file "Inbox")
+           "* TODO %?\n%i\n%a" :prepend t)
+          ("wn" "Project-local notes" entry
+           (file+headline +org-capture-work-notes-file "Inbox")
+           "* %U %?\n%i\n%a" :prepend t)
+
+          ;; In Projects
+          ("p" "Templates for projects")
+          ("pt" "Project-local todo" entry
+           (file+headline +org-capture-project-todo-file "Inbox")
+           "* TODO %?\n%i\n%a" :prepend t)
+          ("pn" "Project-local notes" entry
+           (file+headline +org-capture-project-notes-file "Inbox")
+           "* %U %?\n%i\n%a" :prepend t)
+          ("pc" "Project-local changelog" entry
+           (file+headline +org-capture-project-changelog-file "Unreleased")
+           "* %U %?\n%i\n%a" :prepend t)
+
+          ;; Centalized
+          ("o" "Centralized templates for projects")
+          ("ot" "Project todo" entry
+           #'+org-capture-central-project-todo-file
+           "* TODO %?\n %i\n %a" :heading "Tasks" :prepend nil)
+          ("on" "Project notes" entry
+           #'+org-capture-central-project-notes-file
+           "* %U %?\n %i\n %a" :heading "Notes" :prepend nil)
+          ("oc" "Project changelog" entry
+           #'+org-capture-central-project-changelog-file
+           "* %U %?\n %i\n %a" :heading "Changelog" :prepend nil))
+        )
+  )
+
 (after! org
   (setq org-ellipsis " ▾")
   ;; TODOS
@@ -18,25 +103,8 @@
           ("BLOCKED" . "pink")))
   (setq org-log-into-drawer t)
 
-  (setq org-agenda-files
-        '( "~/Documents/ORG-ROAM/Work-data/todo.org"
-           "~/Documents/ORG-ROAM/Work-data/Archive.org"
-           "~/Documents/ORG-ROAM/Work-data/Livraisons.org")
-        ;; org-agenda-text-search-extra-files
-        ;; '(agenda-archives
-        ;;   "~/workspace/wiki/VRA-Notes/2020/Notes-2020.org"
-        ;;   "~/workspace/wiki/VRA-Notes/2019/DT4.org"
-        ;;   "~/workspace/wiki/VRA-Notes/2020/2020-01.org"
-        ;;   "~/workspace/wiki/VRA-Notes/2020/2020-02.org"
-        ;;   "~/workspace/wiki/VRA-Notes/2020/2020-03.org"
-        ;;   "~/workspace/wiki/VRA-Notes/2020/2020-04.org"
-        ;;   "~/workspace/wiki/VRA-Notes/2020/2020-05.org"
-        ;; )
-        )
   (setq org-refile-targets '((nil :maxlevel . 9)
                              (org-agenda-files :maxlevel . 9)))
-  (setq org-outline-path-complete-in-steps nil)         ; Refile in a single go
-  (setq org-refile-use-outline-path t)                  ; Show full paths for refiling
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
   (setq org-tag-alist
         '((:startgroup)
@@ -45,8 +113,6 @@
           ("@task" . ?E)
           ("@work" . ?W)
           ("@idea" . ?i)))
-  (setq +org-capture-todo-file "~/Documents/ORG-ROAM/Work-data/todo.org"
-        )
   )
 
 ;; Agenda
@@ -83,7 +149,8 @@
                   ((org-agenda-overriding-header "Cancelled")
                    (org-agenda-files org-agenda-files)))
             ))
-          ))
+          )
+        )
   )
 
 ;; Journal
