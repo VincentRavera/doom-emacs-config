@@ -6,10 +6,15 @@
 ;; (defvar eshell-visual-options nil)
 ;; (defvar eshell-visual-subcommands nil)
 (after! (:and eshell em-term)
-  (add-to-list 'eshell-visual-commands "top")
-  (add-to-list 'eshell-visual-options '("git" "--help"))
-  (add-to-list 'eshell-visual-subcommands '("git" "log" "diff" "show"))
-  (setq eshell-destroy-buffer-when-process-dies nil)
+  (add-to-list 'eshell-visual-commands          "top")
+  (add-to-list 'eshell-visual-options           '("git" "--help"))
+  (add-to-list 'eshell-visual-subcommands       '("git" "log" "diff" "show"))
+
+  (setq eshell-destroy-buffer-when-process-dies         nil
+        eshell-history-size                             10000
+        eshell-buffer-maximum-lines                     10000
+        eshell-hist-ignoredups                          t
+        eshell-scroll-to-bottom-on-input                t)
 
   (defun me/eshell/remote-find-file (input-file-name)
     "open remotly the absolut file you want"
