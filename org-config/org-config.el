@@ -14,15 +14,15 @@
       )
 ;; ORG - Files
 (setq +org-capture-notes-file (concat me/org-note-root "/Notes.org")
-      +org-capture-work-notes-file (concat me/org-note-root "/Work/Notes.org")
+      +org-capture-work-notes-file (concat me/org-note-root "/Work/WorkNotes.org")
 
       +org-capture-todo-file (concat me/org-agenda-root "/Todo.org")
-      +org-capture-work-todo-file (concat me/org-agenda-root "/Work/Todo.org")
+      +org-capture-work-todo-file (concat me/org-agenda-root "/Work/WorkTodo.org")
       org-agenda-files
       (list +org-capture-todo-file                                    ;; For Active Tasks
             (eval (concat me/org-agenda-root "/Archive.org"))          ;; For Older Tasks
             +org-capture-work-todo-file                               ;; For Active Tasks
-            (eval (concat me/org-agenda-root "/Work/Archive.org"))     ;; For Older Tasks
+            (eval (concat me/org-agenda-root "/Work/WorkArchive.org"))     ;; For Older Tasks
             )
 
       ;; org-agenda-text-search-extra-files
