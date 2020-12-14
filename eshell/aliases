@@ -15,6 +15,10 @@ alias vim emacsclient $*
 alias nvim emacsclient $*
 # Docker Aliases
 alias kapitan docker run -t -u ${id -u} --rm -v ${pwd}:/src:delegated deepmind/kapitan $*
+# Hide pop-up
+alias pophide +popup/toggle
+alias popraise +popup/raise
+alias mkpop +popup/buffer
 # edition des fich
 alias lf find-file $1
 alias rf me/eshell/remote-find-file $1
