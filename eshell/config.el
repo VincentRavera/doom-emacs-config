@@ -41,9 +41,19 @@
       (map! :map eshell-mode-map
             "C-c r"   #'me/eshell/insert-remote-prefix)
       (map! :map eshell-mode-map
-            "C-c C-r"   #'counsel-esh-history)
-      )
-    )
+            "C-c C-r"   #'counsel-esh-history)))
+  (defun me/eshell/exec (command args)
+    "Execute COMMAND with ARGS inside a bash command.
+Useless locally but on remote server `tramp' working directory might not make sense.
+Examples with docker-compose."
+    ;; (eshell-eval (eshell-parse-command
+    (eval (eshell-parse-command
+           (concat
+            "bash -c '"
+            (me/compact-list-to-sting (cons
+                                       command
+                                       args))
+            "'"))))
   )
 
 

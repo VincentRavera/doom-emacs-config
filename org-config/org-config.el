@@ -104,27 +104,6 @@
   (setq org-log-into-drawer t)
 
 
-  ;; VM MANGEMENT
-  (defun org-ssh-connect (&optional arg)
-    "Connect to the host at point and open `dired'.
-If ARG is non-nil, open `eshell' instead of `dired'."
-    (interactive "P")
-    (let* ((properties (org-entry-properties))
-           (name (alist-get "ITEM" properties nil nil #'string=))
-           (user (alist-get "SSH_USER" properties nil nil #'string=))
-           (port (alist-get "SSH_PORT" properties nil nil #'string=))
-           (host (or (alist-get "IP" properties nil nil #'string=)
-                     (alist-get "HOSTNAME" properties nil nil #'string=))))
-      (if host
-          (let ((default-directory (format "/ssh:%s%s%s:"
-                                           (if user (format "%s@" user) "")
-                                           host
-                                           (if port (format "#%s" port) ""))))
-            (message "Connecting to %s..." name)
-            (if arg
-                (dired ".")
-              (eshell t)))
-        (user-error "Not an SSH host"))))
   (setq org-refile-targets '((nil :maxlevel . 9)
                              (org-agenda-files :maxlevel . 9)))
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
@@ -135,6 +114,37 @@ If ARG is non-nil, open `eshell' instead of `dired'."
           ("@task" . ?E)
           ("@work" . ?W)
           ("@idea" . ?i)))
+
+
+  ;; VM MANGEMENT
+  (defun org-ssh-connect (&optional arg)
+    "Connect to the host at point and open `eshell'.
+If ARG is non-nil, open `dired' instead of `eshell'."
+    (interactive "P")
+    (let* ((properties (org-entry-properties))
+           (message properties)
+           (name (alist-get "ITEM" properties nil nil #'string=))
+           (user (alist-get "SSH_USER" properties nil nil #'string=))
+           (port (alist-get "SSH_PORT" properties nil nil #'string=))
+           (sudo (alist-get "SSH_SUDO" properties nil nil #'string=))
+           (path (alist-get "SSH_PATH" properties nil nil #'string=))
+           (host (or (alist-get "IP" properties nil nil #'string=)
+                     (alist-get "HOSTNAME" properties nil nil #'string=))))
+      (if host
+          (let ((default-directory (format "/ssh:%s%s%s%s:%s"
+                                           (if user (format "%s@" user) "")
+                                           host
+                                           (if sudo (format "|sudo:root@%s" host) "")
+                                           (if port (format "#%s" port) "")
+                                           (if path path ""))))
+            (message "Connecting to %s..." name)
+            (if arg
+                (dired ".")
+              (eshell t)))
+        (user-error "Not an SSH host"))))
+
+
+
   )
 
 ;; Agenda

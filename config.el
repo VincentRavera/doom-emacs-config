@@ -34,7 +34,17 @@
 ;; `nil' to disable it:
 (setq display-line-numbers-type 'relative)
 
+;; Disable some nuisances Warnings
+(when (equal emacs-version "27.1")
+  (setq byte-compile-warnings '(cl-functions)))
 
+;; Persenals Functions
+;; Must never depend on a module/package
+(defun me/compact-list-to-sting (list-args)
+  "Concatenate LIST-ARGS a list of string to a string seperated by spaces"
+  (if list-args
+      (concat (car list-args) " " (me/compact-list-to-sting (cdr list-args)))
+    ""))
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
@@ -69,8 +79,8 @@
 ;;   (flyspell-prog-mode))
 
 ;; snippets
-;; (after! 'yasnippet
-;;         yas-global-mode 1)
+(after! 'yasnippet
+  yas-global-mode 1)
 
 ;; ORG
 (load! "org-config/org-config.el")
@@ -122,9 +132,9 @@
         :desc "Add buffer to workspace" "a" #'persp-add-buffer
         :desc "Delete buffer from workspace" "d" #'persp-remove-buffer))
       (:prefix-map ("TAB" . "workspace")
-        :desc "Add buffer to workspace" "a" #'persp-add-buffer
-        :desc "Delete buffer from workspace" "D" #'persp-remove-buffer
-        :desc "Switch Workspace" "SPC" #'+workspace/switch-to))
+       :desc "Add buffer to workspace" "a" #'persp-add-buffer
+       :desc "Delete buffer from workspace" "D" #'persp-remove-buffer
+       :desc "Switch Workspace" "SPC" #'+workspace/switch-to))
 
 (load! "./dap/config.el")
 (load! "./lsp/config.el")
