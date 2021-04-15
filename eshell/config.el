@@ -54,8 +54,14 @@ Examples with docker-compose."
                                        command
                                        args))
             "'"))))
-  )
+  (defun me/eshell/exe (command args)
+    (me/eshell/exec command (cdr args)))
+  ;; (eshell-remote-command "bash" (concat "-c '"
+  ;;                                       (me/compact-list-to-sting (cons
+  ;;                                                                  command
+  ;;                                                                  args))
+  ;;                                       "'")))
 
-
+)
 ;; get TRAMP prefix
 ;; (tramp-handle-file-remote-p $PWD) => /sudo:root@localhost:

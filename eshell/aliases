@@ -24,3 +24,4 @@ alias lf find-file $1
 alias rf me/eshell/remote-find-file $1
 alias rcd me/eshell/remote-change-directory $1
 alias dc me/eshell/exec docker-compose $*
+alias exe me/eshell/exe $*

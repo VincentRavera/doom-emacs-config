@@ -153,11 +153,13 @@ If ARG is non-nil, open `dired' instead of `eshell'."
   (setq org-agenda-custom-commands
         '(("d" "Dashboard"
            ((agenda "" ((org-deadline-warning-days 7)))
+            (todo "INPROGRESS"
+                  ((org-agenda-overriding-header "Doing now")))
             (todo "TODO"
                   ((org-agenda-overriding-header "Next Tasks")))
 
-            (todo "INPROGRESS"
-                  ((org-agenda-overriding-header "Doing now")))
+            (todo "BLOCKED"
+                  ((org-agenda-overriding-header "Blocked by circumstences")))
             (tags-todo "agenda/ACTIVE" ((org-agenda-overriding-header "Active Projects")))))
           ("w" "Workflow Status"
            ((todo "TODO"
