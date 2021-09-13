@@ -137,6 +137,7 @@
        emacs-lisp        ; drown in parentheses
        ;;erlang            ; an elegant language for a more civilized age
        ;;ess               ; emacs speaks statistics
+       ;;factor
        ;;faust             ; dsp, but you get to keep your soul
        ;;fsharp            ; ML stands for Microsoft's Language
        ;;fstar             ; (dependent) types and (monadic) effects and Z3
@@ -167,7 +168,8 @@
         ;;+jupyter        ; ipython/jupyter support for babel
         ;;+pandoc          ; export-with-pandoc support
         ;;+pomodoro        ; be fruitful with the tomato technique
-        +roam
+        ;; +roam
+        +roam2
         +journal
         +pretty          ;
         +present)        ; using org-mode for presentations
@@ -176,6 +178,7 @@
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
        (python           ; beautiful is better than ugly
+        +conda
         +lsp)
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
@@ -194,6 +197,7 @@
        ;;terra             ; Earth and Moon in alignment for performance.
        ;;web               ; the tubes
        yaml              ; JSON, but readable
+       ;;zig               ; C, but simpler
 
        :email
        ;;(mu4e +gmail)

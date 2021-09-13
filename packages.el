@@ -56,6 +56,8 @@
 (package! kubernetes)
 (package! kubernetes-evil)
 (package! plantuml-mode)
+(package! json-snatcher)
 (package! jsonnet-mode)
 (package! emacs-piper
   :recipe (:host gitlab :repo "VincentRavera/emacs-piper" :branch "develop"))
+(package! ztree)

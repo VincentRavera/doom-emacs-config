@@ -103,6 +103,8 @@
 ;; (Un-tested, do not use) workon $NAME_OF_THE_PROJECT
 ;; (Un-tested, do not use) (workon) python -m pip install node pytest pyflakes isort python-language-server ptvsd mypy flake8
 ;;
+;; pip install node pytest pyflakes ptvsd mypy flake8 python-lsp-server
+;;
 ;; Starting the IDE
 ;;
 ;; Key bindings:
@@ -196,3 +198,5 @@
 
 ;; Piper integration
 (load! "./piper/config.el")
+
+(setq password-cache-expiry (* 60 10))

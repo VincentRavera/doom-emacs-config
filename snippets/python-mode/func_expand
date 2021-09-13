@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: func_expand
+# key: defunc
+# --
+def $1($2)$3:
+    """${4:$1}
+
+    ${2:$(if (string-empty-p (yas-field-value 2)) "" (concat "Parameters:\n-----------\n" (yas-field-value 2)))}
+        $4
+
+    ${3:$(if (string-empty-p (yas-field-value 3)) "" (concat "Outputs:\n--------\n" (yas-field-value 3)))}
+        $5
+    """
+    $0
