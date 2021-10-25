@@ -182,13 +182,7 @@
 (load! "./plantuml/config.el")
 
 ;; TRAMP config
-(after! tramp
-  (defun me/tramp/clear ()
-    "Shuts down Tramp"
-    (interactive)
-    (tramp-cleanup-all-connections)
-    (tramp-cleanup-all-buffers))
-  )
+(load! "./tramp/config.el")
 
 ;; undo
 (setq global-undo-tree-mode t)
@@ -200,3 +194,8 @@
 (load! "./piper/config.el")
 
 (setq password-cache-expiry (* 60 10))
+
+;; Dead circonflex
+;; https://unix.stackexchange.com/questions/28170/some-keys-are-invalid-on-emacs-when-using-german-keyboard
+(define-key key-translation-map [dead-circumflex] "^")
+

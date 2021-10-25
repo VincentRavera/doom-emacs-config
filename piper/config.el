@@ -8,20 +8,42 @@
 (use-package! piper
   :load-path "~/.emacs.d/.local/straight/repos/emacs-piper")
 
-(map! :leader
-      (:prefix ("|" . "Pipe") ;; Piper Tool
-       :desc "Local" "|" #'piper
-       :desc "Directories" "d" #'piper-other
-       :desc "Remote" "r" #'piper-remote
-       :desc "Buffer" "b" #'piper-user-interface
-       :desc "Scripting Buffer" "p" #'piper-popen-piper-script
-       ))
+(setq piper-db-path "~/workspace/perso/piperdb/")
+
+(defun me/piper-db-explore ()
+  (interactive)
+  (->> (piper-script
+        (shell (format "find %s -type f" (file-truename piper-db-path)))
+        (grep ".el$")
+        (sed ".el$" "")
+        (sed (file-truename piper-db-path) ""))
+       (split-string)
+       (completing-read "Script :")
+       (format "%s%s.el" piper-db-path)
+       (find-file)))
+
+
+(defun me/piper-db-save ()
+  (interactive)
+  (->> (piper-script
+        (shell (format "find %s -type f" (file-truename piper-db-path)))
+        (grep ".el$")
+        (sed ".el$" "")
+        (sed (file-truename piper-db-path) ""))
+       (split-string)
+       (completing-read "Script :")
+       (format "%s%s.el" piper-db-path)
+       (write-file)))
+
 
 (map! :leader
-      (:prefix ("a" . "Pipe") ;; Piper Tool
-       :desc "Local" "a" #'piper
+      (:prefix ("|" . "Pipe") ;; Piper Tool
+       :desc "Locally" "|" #'piper
+       :desc "Project" "p" #'piper-project
        :desc "Directories" "d" #'piper-other
        :desc "Remote" "r" #'piper-remote
-       :desc "Buffer" "b" #'piper-user-interface
-       :desc "Scripting Buffer" "p" #'piper-popen-piper-script
+       :desc "On current Buffer" "b" #'piper-user-interface
+       :desc "Open piper-scripting Buffer" "s" #'piper-popen-piper-script
+       :desc "Explore saved scripts" "x" #'me/piper-db-explore
+       :desc "Save script to database" "w" #'me/piper-db-save
        ))
