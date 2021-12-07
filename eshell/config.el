@@ -41,7 +41,7 @@
       (map! :map eshell-mode-map
             "C-c r"   #'me/eshell/insert-remote-prefix)
       (map! :map eshell-mode-map
-            "C-c C-r"   #'counsel-esh-history)))
+            "C-c C-r"   #'+eshell/search-history)))
   (defun me/eshell/exec (command args)
     "Execute COMMAND with ARGS inside a bash command.
 Useless locally but on remote server `tramp' working directory might not make sense.

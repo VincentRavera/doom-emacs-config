@@ -84,6 +84,13 @@
         )
   )
 
+(after! org-roam
+  (setq org-roam-capture-templates
+        `(("d" "default" plain "%?"
+           :target (file+head "${slug}.org" "#+title: ${title}\n#filetags: ")
+           :unnarrowed t)))
+  )
+
 (after! org
   (setq org-ellipsis " ▾")
   ;; TODOS
@@ -139,8 +146,8 @@ If ARG is non-nil, open `dired' instead of `eshell'."
                                            (if path path ""))))
             (message "Connecting to %s..." name)
             (if arg
-                (dired ".")
-              (eshell t)))
+                (eshell t)
+              (dired ".")))
         (user-error "Not an SSH host"))))
 
 

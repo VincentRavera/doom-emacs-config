@@ -22,6 +22,17 @@
        (format "%s%s.el" piper-db-path)
        (find-file)))
 
+(defun me/piper-db-execute ()
+  (interactive)
+  (->> (piper-script
+        (shell (format "find %s -type f" (file-truename piper-db-path)))
+        (grep ".el$")
+        (sed ".el$" "")
+        (sed (file-truename piper-db-path) ""))
+       (split-string)
+       (completing-read "Script :")
+       (format "%s%s.el" piper-db-path)
+       (load-file)))
 
 (defun me/piper-db-save ()
   (interactive)
@@ -44,6 +55,7 @@
        :desc "Remote" "r" #'piper-remote
        :desc "On current Buffer" "b" #'piper-user-interface
        :desc "Open piper-scripting Buffer" "s" #'piper-popen-piper-script
-       :desc "Explore saved scripts" "x" #'me/piper-db-explore
+       :desc "Explore saved scripts" "f" #'me/piper-db-explore
+       :desc "Execute saved scripts" "x" #'me/piper-db-execute
        :desc "Save script to database" "w" #'me/piper-db-save
        ))

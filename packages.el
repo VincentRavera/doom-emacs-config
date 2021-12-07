@@ -59,5 +59,5 @@
 (package! json-snatcher)
 (package! jsonnet-mode)
 (package! emacs-piper
-  :recipe (:host gitlab :repo "VincentRavera/emacs-piper" :branch "develop"))
+  :recipe (:host gitlab :repo "VincentRavera/emacs-piper" :branch "extensions"))
 (package! ztree)
