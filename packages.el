@@ -61,3 +61,27 @@
 (package! emacs-piper
   :recipe (:host gitlab :repo "VincentRavera/emacs-piper" :branch "extensions"))
 (package! ztree)
+(package! guix)
+
+;; GUIX integration
+(when (file-directory-p "/gnu/store")
+  ;; Vterm
+  ;; emacs-libvterm needs to be recompilied by guix to the pinned versions
+  (let* ((emacs-vterm-paths (remove-if-not
+                             'file-directory-p
+                             (doom-glob "/gnu/store/*emacs-vterm*")))
+         ;; Removes checkout directories
+         (vterm-builds (remove-if
+                         (lambda (x) (string-match-p "-checkout" x))
+                         emacs-vterm-paths))
+         ;; select the version to use
+         (vterm-latest-build (car (remove-if-not
+                                   (lambda (x) (string-match-p "1.0.0" x))
+                                   vterm-builds)))
+         (vterm-path (car (doom-glob (format "%s/share/emacs/site-lisp/*" vterm-latest-build))))
+         ;; Build recipe object outside of the package! macro
+         (recipe `(:local-repo ,vterm-path)))
+    (when vterm-path
+      (package! vterm
+        :type 'virtual
+        :recipe recipe))))
