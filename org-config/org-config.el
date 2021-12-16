@@ -85,6 +85,7 @@
   )
 
 (after! org-roam
+  (setq org-roam-dailies-directory "Work/daily/")
   (setq org-roam-capture-templates
         `(("d" "default" plain "%?"
            :target (file+head "${slug}.org" "#+title: ${title}\n#filetags: ")
@@ -118,9 +119,10 @@
         '((:startgroup)
                                         ; Put mutually exclusive tags here
           (:endgroup)
-          ("@task" . ?E)
-          ("@work" . ?W)
-          ("@idea" . ?i)))
+          ("@home" . ?h)
+          ("@work" . ?w)
+          ("task" . ?t)
+          ("idea" . ?i)))
 
 
   ;; VM MANGEMENT
