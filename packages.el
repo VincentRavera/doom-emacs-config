@@ -64,21 +64,14 @@
 (package! guix)
 
 ;; GUIX integration
-(when (file-directory-p "/gnu/store")
+(when (file-directory-p (getenv "GUIX_PROFILE"))
   ;; Vterm
   ;; emacs-libvterm needs to be recompilied by guix to the pinned versions
-  (let* ((emacs-vterm-paths (remove-if-not
-                             'file-directory-p
-                             (doom-glob "/gnu/store/*emacs-vterm*")))
-         ;; Removes checkout directories
-         (vterm-builds (remove-if
-                         (lambda (x) (string-match-p "-checkout" x))
-                         emacs-vterm-paths))
-         ;; select the version to use
-         (vterm-latest-build (car (remove-if-not
-                                   (lambda (x) (string-match-p "1.0.0" x))
-                                   vterm-builds)))
-         (vterm-path (car (doom-glob (format "%s/share/emacs/site-lisp/*" vterm-latest-build))))
+  (let* (;; locate emacs lisp depo
+         (profile-emacs-package (format "%s/share/emacs/site-lisp" (getenv "GUIX_PROFILE")))
+         ;; select vterm
+         (vterm-path (car
+                             (doom-glob (format "%s/vterm*" profile-emacs-package))))
          ;; Build recipe object outside of the package! macro
          (recipe `(:local-repo ,vterm-path)))
     (when vterm-path

@@ -199,3 +199,7 @@
 ;; https://unix.stackexchange.com/questions/28170/some-keys-are-invalid-on-emacs-when-using-german-keyboard
 (define-key key-translation-map [dead-circumflex] "^")
 
+;; GUIX
+
+(map! :leader
+      :desc "GUIX" "G" #'guix)
