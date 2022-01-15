@@ -200,6 +200,4 @@
 (define-key key-translation-map [dead-circumflex] "^")
 
 ;; GUIX
-
-(map! :leader
-      :desc "GUIX" "G" #'guix)
+(load! "./guix/config.el")
