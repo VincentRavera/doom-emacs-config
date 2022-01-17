@@ -62,6 +62,8 @@
   :recipe (:host gitlab :repo "VincentRavera/emacs-piper" :branch "extensions"))
 (package! ztree)
 (package! guix)
+(package! dtache
+  :recipe (:host gitlab :repo "niklaseklund/dtache" :branch "main"))
 
 ;; GUIX integration
 (when (file-directory-p (getenv "GUIX_PROFILE"))

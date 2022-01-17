@@ -161,6 +161,9 @@
 ;;
 (load! "./java/config.el")
 
+;; Clojure
+(load! "./clojure/config.el")
+
 (load! "./go/config.el")
 
 ;; Default browser
@@ -184,6 +187,17 @@
 ;; TRAMP config
 (load! "./tramp/config.el")
 
+;; EMMS
+(after! emms-mode-line
+  (emms-mode-line-disable)
+  (defun emms-mode-line-playlist-current ()
+    "Format the currently playing song."
+    (format emms-mode-line-format
+            (s-replace-regexp "^.*/" ""
+                              (s-replace-regexp ".mp3$" ""
+                                                (emms-track-description
+                                                 (emms-playlist-current-selected-track)))))))
+
 ;; undo
 (setq global-undo-tree-mode t)
 (after! undo-tree
@@ -193,6 +207,13 @@
 ;; Piper integration
 (load! "./piper/config.el")
 
+;; Dtache Integration
+(load! "./dtache/config.el")
+
+;; Ztree
+(after! ztree
+  (add-to-list 'ztree-dir-filter-list "\\.pyc$"))
+
 (setq password-cache-expiry (* 60 10))
 
 ;; Dead circonflex
@@ -201,3 +222,10 @@
 
 ;; GUIX
 (load! "./guix/config.el")
+
+;; Display ansi color in buffer
+;; https://stackoverflow.com/questions/23378271/how-do-i-display-ansi-color-codes-in-emacs-for-any-mode
+(defun me/display-ansi-colors ()
+  (interactive)
+  (let ((inhibit-read-only t))
+    (ansi-color-apply-on-region (point-min) (point-max))))
