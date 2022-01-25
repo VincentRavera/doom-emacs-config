@@ -64,9 +64,10 @@
 (package! guix)
 (package! dtache
   :recipe (:host gitlab :repo "niklaseklund/dtache" :branch "main"))
+(package! shx)
 
 ;; GUIX integration
-(when (file-directory-p (getenv "GUIX_PROFILE"))
+(when (and (getenv "GUIX_PROFILE") (file-directory-p (getenv "GUIX_PROFILE")))
   ;; Vterm
   ;; emacs-libvterm needs to be recompilied by guix to the pinned versions
   (let* (;; locate emacs lisp depo

@@ -178,6 +178,9 @@
 ;; loads Eshell config
 (load! "./eshell/config.el")
 
+;; loads SHX config
+(load! "./shx/config.el")
+
 ;; loads Kubernetes config
 (load! "./kubernetes/config.el")
 
