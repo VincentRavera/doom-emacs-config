@@ -45,7 +45,10 @@
       (list +org-capture-todo-file                                    ;; For Active Tasks
             (eval (concat me/org-agenda-root "/Archive.org"))          ;; For Older Tasks
             +org-capture-work-todo-file                               ;; For Active Tasks
-            (eval (concat me/org-agenda-root "/Work/WorkArchive.org"))     ;; For Older Tasks
+            (eval me/org-note-root "/Work/WorkArchive.org")     ;; For Older Tasks
+            me/org-note-root
+            (eval (concat me/org-note-root "/Work/"))
+            (eval (concat me/org-note-root "/Work/daily/"))
             )
 
       ;; org-agenda-text-search-extra-files
