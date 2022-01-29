@@ -1,6 +1,8 @@
 ;;; shx/config.el -*- lexical-binding: t; -*-
 
-(map! :map doom-leader-open-map
-      "s" #'shx)
+(shx-global-mode 1)
 
-;; TODO implement +shx/toogle and +shx/here
+(map! :map doom-leader-open-map
+      "s" #'+shell/toggle
+      "S" #'+shell/here)
+

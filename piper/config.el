@@ -5,10 +5,10 @@
 ;; Official Package: https://gitlab.com/howardabrams/emacs-piper.git
 ;;
 ;;
-;; (use-package! piper
-;;   :load-path "~/.emacs.d/.local/straight/repos/emacs-piper")
 (use-package! piper
-  :load-path "~/workspace/perso/emacs-piper")
+  :load-path "~/.emacs.d/.local/straight/repos/emacs-piper")
+;; (use-package! piper
+;;   :load-path "~/workspace/perso/emacs-piper")
 
 (setq piper-db-path "~/workspace/perso/piperdb/")
 

@@ -5,7 +5,8 @@
   (interactive)
   (when (not (bound-and-true-p guix-profiles))
     (require 'guix-ui-profile)
-    (guix-all-profiles))
+    )
+  (guix-all-profiles)
   (guix-set-emacs-environment (completing-read "Profile: " (guix-all-profiles))))
 
 (map! :leader

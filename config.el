@@ -35,7 +35,8 @@
 (setq display-line-numbers-type 'relative)
 
 ;; Disable some nuisances Warnings
-(when (equal emacs-version "27.1")
+(when (or (equal emacs-version "27.1")
+          (equal emacs-version "27.2"))
   (setq byte-compile-warnings '(cl-functions)))
 
 ;; Persenals Functions
