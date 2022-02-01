@@ -117,7 +117,7 @@
           (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
   (setq org-roam-capture-templates
         `(("d" "default" plain "%?"
-           :target (file+head "${slug}.org" "#+title: ${title}\n#filetags: ")
+           :target (file+head "${slug}.org" "#+title: ${title}\n#+filetags: ")
            :unnarrowed t)))
   )
 
