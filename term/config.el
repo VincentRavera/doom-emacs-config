@@ -9,5 +9,7 @@
   )
   ;; Binds C-c C-p and C-c C-n in normal mode in terminals
   ;; Goes to the previous/next commands inputed by the user
-  (setq term-prompt-regexp "^[^#$%>\n]*[#$%>▶] *")
+  ;; https://tecosaur.github.io/emacs-config/config.html#prompt-recognition
+  (setq term-prompt-regexp "\\(?:^\\|
+\\)[^]#$%>\n]*#?[]#$%>] *\\(\\[[0-9;]*[a-zA-Z] *\\)*")
 )
