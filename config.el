@@ -233,3 +233,23 @@
   (interactive)
   (let ((inhibit-read-only t))
     (ansi-color-apply-on-region (point-min) (point-max))))
+
+;; magit
+(after! magit
+  (setq magit-submodule-list-columns (list (list "Path" 25 'magit-modulelist-column-path nil)
+                                           (list "Version" 25 'magit-repolist-column-version nil)
+                                           (list "Dirt" 4 'magit-repolist-column-dirty
+                                                 '((:right-align t)))
+                                           (list "CurrentBranch" 20 'magit-repolist-column-branch nil)
+                                           (list "#Branchs" 15 'magit-repolist-column-branches
+                                                 '((:right-align t)))
+                                           (list "#Unpulled" 10 'magit-repolist-column-unpulled-from-upstream
+                                                 '((:right-align t)))
+                                           (list "#Unpushed" 10 'magit-repolist-column-unpushed-to-upstream
+                                                 '((:right-align t)))
+                                           ;; (list "B<P" 3 'magit-repolist-column-unpulled-from-pushremote
+                                           ;;       '((:right-align t)))
+                                           ;; (list "B>P" 3 'magit-repolist-column-unpushed-to-pushremote
+                                           ;;       '((:right-align t)))
+                                           (list "Stash" 5 'magit-repolist-column-stashes
+                                                 '((:right-align t))))))
