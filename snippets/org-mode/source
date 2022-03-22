@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: code block
+# key: src
+# --
+#+BEGIN_SRC ${1:bash}
+$0
+#+END_SRC
