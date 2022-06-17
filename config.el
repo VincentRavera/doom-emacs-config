@@ -28,7 +28,7 @@
 ;; 'doom-gruvbox
 ;; 'doom-sourcerer
 ;; 'doom-horizon
-(setq doom-theme 'doom-sourcerer)
+(setq doom-theme 'doom-horizon)
 
 ;; If you want to change the style of line numbers, change this to `relative' or
 ;; `nil' to disable it:
@@ -253,3 +253,5 @@
                                            ;;       '((:right-align t)))
                                            (list "Stash" 5 'magit-repolist-column-stashes
                                                  '((:right-align t))))))
+;; Utils
+(load! "./utils/main.el")

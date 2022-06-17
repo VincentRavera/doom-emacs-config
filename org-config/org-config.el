@@ -111,6 +111,9 @@
   )
 
 (after! org-roam
+  ;; https://discourse.doomemacs.org/t/org-roam-doesnt-show-nodes-that-are-in-subdirectories/2589
+  ;; Allow roam to find files in that are gitignored
+  (setq org-roam-list-files-commands '(find fd fdfind rg))
   (setq org-roam-dailies-directory "Work/daily/")
   (setq org-roam-dailies-capture-templates
         `(("d" "default" entry "* %? \n%T" :target

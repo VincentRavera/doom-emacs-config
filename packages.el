@@ -59,12 +59,14 @@
 (package! json-snatcher)
 (package! jsonnet-mode)
 (package! emacs-piper
-  :recipe (:host gitlab :repo "VincentRavera/emacs-piper" :branch "extensions"))
+  :recipe (:host gitlab :repo "VincentRavera/emacs-piper" :branch "breadcrumbs"))
 (package! ztree)
 (package! guix)
 (package! dtache
   :recipe (:host gitlab :repo "niklaseklund/dtache" :branch "main"))
 (package! shx)
+(package! vagrant-tramp)
+(package! vagrant)
 
 ;; GUIX integration
 (when (and (getenv "GUIX_PROFILE") (file-directory-p (getenv "GUIX_PROFILE")))
