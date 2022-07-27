@@ -36,7 +36,8 @@
 
 ;; Disable some nuisances Warnings
 (when (or (equal emacs-version "27.1")
-          (equal emacs-version "27.2"))
+          (equal emacs-version "27.2")
+          (equal emacs-version "28.1"))
   (setq byte-compile-warnings '(cl-functions)))
 
 ;; Persenals Functions
@@ -254,4 +255,11 @@
                                            (list "Stash" 5 'magit-repolist-column-stashes
                                                  '((:right-align t))))))
 ;; Utils
-(load! "./utils/main.el")
+(autoload
+  'me/forced-evil
+  (concat doom-private-dir "utils/main.el")
+  "evil binding in a transient state."
+  t)
+
+;; vagrant
+(load! "./vagrant/config.el")

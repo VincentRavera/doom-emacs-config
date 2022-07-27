@@ -1,5 +1,7 @@
 ;;; utils/main.el -*- lexical-binding: t; -*-
 
+(require 'transient)
+
 (define-suffix-command me/forced-evil:up ()
    :description "Up"
    :transient t
