@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -o nounset -o errexit -o pipefail
+
+# STDIN storage
+tobufftmp="$(mktemp)"
+trap 'rm -f -- "$tobufftmp"' EXIT
+# Reading STDIN
+> "$tobufftmp" cat -
+# xargs is there to strip the "" from the beginning and end of the output from Emacs.
+emacsclient -e "(find-file \"$tobufftmp\")" | xargs

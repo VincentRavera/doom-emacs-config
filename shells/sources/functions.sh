@@ -75,22 +75,6 @@ eshell () {
     $EDITOR -e "(+eshell/here)"
 }
 
-vterm_printf(){
-    if [ -n "$TMUX" ] && ([ "${TERM%%-*}" = "tmux" ] || [ "${TERM%%-*}" = "screen" ] ); then
-        # Tell tmux to pass the escape sequences through
-        printf "\ePtmux;\e\e]%s\007\e\\" "$1"
-    elif [ "${TERM%%-*}" = "screen" ]; then
-        # GNU screen (screen, screen-256color, screen-256color-bce)
-        printf "\eP\e]%s\007\e\\" "$1"
-    else
-        printf "\e]%s\e\\" "$1"
-    fi
-}
-
-vterm_prompt_end(){
-    vterm_printf "51;A$(whoami)@$(hostname):$(pwd)"
-}
-
 # black="\[\e[0;30m\]"
 # red="\[\e[0;31m\]"
 green="\[\e[0;32m\]"
@@ -105,4 +89,9 @@ normal="\[\e[0m\]"
 BASIC_PS1="${green}\u${normal}@${blue}\H${normal}:${yellow}\w${normal} ${green}\$${normal} "
 # echo "----$PS1----"
 PS1="$BASIC_PS1"
-PS1=$PS1'\[$(vterm_prompt_end)\]'
+if [[ "$INSIDE_EMACS" = 'vterm' ]] \
+    && [[ -n ${EMACS_VTERM_PATH} ]] \
+    && [[ -f ${EMACS_VTERM_PATH}/etc/emacs-vterm-bash.sh ]]; then
+    source "${EMACS_VTERM_PATH}/etc/emacs-vterm-bash.sh"
+fi
+
