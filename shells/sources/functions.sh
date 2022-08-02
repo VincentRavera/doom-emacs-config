@@ -24,7 +24,10 @@ _emacs_sudo () {
 }
 
 _emacs_edit_from_inside () {
-    emacsclient -n "$@"
+    for file in $@
+    do
+        emacsclient -n -e "(find-file-other-window \"$file\")"
+    done
 }
 
 _emacs_edit_from_outside () {

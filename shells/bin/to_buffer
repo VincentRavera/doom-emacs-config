@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -o nounset -o errexit -o pipefail
+set -o errexit -o pipefail
 
 # STDIN storage
 tobufftmp="$(mktemp)"
@@ -7,4 +7,8 @@ trap 'rm -f -- "$tobufftmp"' EXIT
 # Reading STDIN
 > "$tobufftmp" cat -
 # xargs is there to strip the "" from the beginning and end of the output from Emacs.
-emacsclient -e "(find-file \"$tobufftmp\")" | xargs
+if [ -n "$INSIDE_EMACS" ]; then
+    emacsclient -e "(find-file-other-window \"$tobufftmp\")" | xargs
+else
+    emacsclient -t "$tobufftmp"
+fi
