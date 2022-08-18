@@ -67,6 +67,8 @@
 (package! shx)
 (package! vagrant-tramp)
 (package! vagrant)
+(package! emacs-calfw  :pin "e3d04c253230ed0692f161f527d4e42686060f62"
+  :recipe (:host github :repo "zemaye/emacs-calfw" :branch "master"))
 
 ;; GUIX integration
 (when (and (getenv "GUIX_PROFILE") (file-directory-p (getenv "GUIX_PROFILE")))

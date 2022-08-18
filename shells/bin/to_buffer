@@ -8,7 +8,7 @@ trap 'rm -f -- "$tobufftmp"' EXIT
 > "$tobufftmp" cat -
 # xargs is there to strip the "" from the beginning and end of the output from Emacs.
 if [ -n "$INSIDE_EMACS" ]; then
-    emacsclient -e "(find-file-other-window \"$tobufftmp\")" | xargs
+    emacsclient -n "$tobufftmp" | xargs
 else
     emacsclient -t "$tobufftmp"
 fi
