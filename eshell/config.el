@@ -35,13 +35,20 @@
     "outputs the remote prefix"
     (file-remote-p (eshell/pwd)))
 
+  (defun me/eshell/search-history ()
+    "Search eshell history, inserts selected, goes to insert state."
+    (interactive)
+    (evil-normal-state)
+    (+eshell/search-history)
+    (evil-insert-state))
+
   (add-hook! 'eshell-first-time-mode-hook
     (defun +me/eshell/hook-binding ()
       ;; add personal keybindings for eshell
       (map! :map eshell-mode-map
             "C-c r"   #'me/eshell/insert-remote-prefix)
       (map! :map eshell-mode-map
-            "C-c C-r"   #'+eshell/search-history)))
+            "C-c C-r"   #'me/eshell/search-history)))
   (defun me/eshell/exec (command args)
     "Execute COMMAND with ARGS inside a bash command.
 Useless locally but on remote server `tramp' working directory might not make sense.
