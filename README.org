@@ -6,7 +6,7 @@ git clone git@github.com:VincentRavera/doom-emacs-config.git ~/.doom.d
 
 echo "export DOOM_HOME=\"~/.emacs.d/bin\"" >> ~/.bashrc
 echo "export PATH=\"\$PATH:\$DOOM_HOME\"" >> ~/.bashrc
-echo "export DOOM_EXTRA_HOME=\"~/.doom.d/shells/bin\"" >> ~/.bashrc
-echo "export PATH=\"\$PATH:\$DOOM_EXTRA_HOME\"" >> ~/.bashrc
+echo "# export DOOM_EXTRA_HOME=\"~/.doom.d/shells/bin\"" >> ~/.bashrc
+echo "# export PATH=\"\$PATH:\$DOOM_EXTRA_HOME\"" >> ~/.bashrc
 echo "source ~/.doom.d/shells/sources/functions.sh" >> ~/.bashrc
 #+END_SRC

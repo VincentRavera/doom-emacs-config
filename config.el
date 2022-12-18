@@ -177,6 +177,9 @@
 ;; loads Terminals config
 (load! "./term/config.el")
 
+;; loads VTerm config
+(load! "./vterm/config.el")
+
 ;; loads Eshell config
 (load! "./eshell/config.el")
 
