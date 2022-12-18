@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Shell for loop
+# key: for
+# --
+for i in ${1:*}; do ${2:echo} "$i"; done $0

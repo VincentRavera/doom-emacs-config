@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Eshell for loop
+# key: for
+# --
+for i in ${1:*} { ${2:echo} "$i"; $3 } $0

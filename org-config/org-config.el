@@ -184,8 +184,35 @@ If ARG is non-nil, open `dired' instead of `eshell'."
               (dired ".")))
         (user-error "Not an SSH host"))))
 
+  ;; org-ssh integration
+  (defun org-ssh (&optional arg)
+    "Open a new workspace and connect to the hosts.
+If ARG is non-nil, open `dired' instead of `eshell'."
+    (interactive "P")
+    (let* ((properties (org-entry-properties))
+           (message properties)
+           (name (alist-get "ITEM" properties nil nil #'string=))
+           (user (alist-get "SSH_USER" properties nil nil #'string=))
+           (port (alist-get "SSH_PORT" properties nil nil #'string=))
+           (sudo (alist-get "SSH_SUDO" properties nil nil #'string=))
+           (path (alist-get "SSH_PATH" properties nil nil #'string=))
+           (host (or (alist-get "IP" properties nil nil #'string=)
+                     (alist-get "HOSTNAME" properties nil nil #'string=))))
+      (if host
+          (let ((default-directory (format "/ssh:%s%s%s%s:%s"
+                                           (if user (format "%s@" user) "")
+                                           host
+                                           (if sudo (format "|sudo:root@%s" host) "")
+                                           (if port (format "#%s" port) "")
+                                           (if path path ""))))
 
-
+            (+workspace-switch (concat "SSH:" host) t)
+            (message "Connecting to %s..." name)
+            (if arg
+                (eshell t)
+              (dired ".")))
+        (user-error "Not an SSH host"))))
+  (org-babel-lob-ingest "~/Documents/ORG/NOTES/Scripts.org")
   )
 
 ;; Agenda
