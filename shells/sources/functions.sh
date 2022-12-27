@@ -7,17 +7,26 @@
 # - term
 # - shell from outside emacs
 #
-## functions
-## Alias    Description         FROM TERM                   FROM EMACS GUI SHELL/TERM    FROM VTERM (remote is supported)
-#  e        edit                Send file to GUI, retruns   Send to server, jumps to it  ffow on file
-# se        sudo edit           Send file to GUI, retruns   Send to server, jumps to it  ffow on file
-#  f        file                Open in terminal            Send to server, jumps to it  ffow on file
-#  ff       find-file           Open in terminal            Send to server, jumps to it  ffow on file
-# sf        sudo file           Open in terminal            Send to server, jumps to it  ffow on file
-# sff       sudo find-file      Open in terminal            Send to server, jumps to it  ffow on file
-# eshell    eshell              Open in terminal            Send to server, jumps to it  Impossible from remotes
+## Availables functions
+#  ALIAS    DESCRIPTION         FROM EXTERNAL TERMINAL      FROM INSIDE EMACS
+#  e        edit                Send file to GUI,           Send to server,
+#                               returns                     jumps to it
+# se        sudo edit           Send file to GUI,           Send to server,
+#                               returns                     jumps to it
+#  f        file                Open in terminal            Send to server,
+#                                                           jumps to it
+#  ff       find-file           Open in terminal            Send to server,
+#                                                           jumps to it
+# sf        sudo file           Open in terminal            Send to server,
+#                                                           jumps to it
+# sff       sudo find-file      Open in terminal            Send to server,
+#                                                           jumps to it
+# to_buff   send stdin to       Open Buffer                 Send to server,
+#           temporary buffer    in terminal                 jumps to it
+#
 ### MISC:
 # elisp             run lisp script in running emacs server
+# eshell            Start Eshell in your terminal
 # to_buff           read pipeline and send it to a emacs buffer
 
 # Emacs client
@@ -59,7 +68,7 @@ if [ -n "$INSIDE_EMACS" ]; then
     # we are interacting from a shell/term inside of Emacs
     # we do not want to use --tty since we will have nested emacs frames
     export EDITOR="emacsclient"                  # $EDITOR opens in terminal
-    # export VISUAL="emacsclient -c -a emacs"         # $VISUAL opens in GUI mode
+    # export VISUAL="emacsclient -c -a emacs"    # $VISUAL opens in GUI mode
     alias  e=_emacs_edit_from_inside
     alias se=_emacs_sudo_edit_from_inside
     alias  f=_emacs_edit_from_inside
@@ -69,11 +78,11 @@ if [ -n "$INSIDE_EMACS" ]; then
 
 else
     # we don't have to worry about nested frames
-    export EDITOR="emacsclient -t"                  # $EDITOR opens in terminal
-    # export VISUAL="emacsclient -c -a emacs"         # $VISUAL opens in GUI mode
-    alias  e=_emacs_edit_from_inside            # will send the file to server and return
+    export EDITOR="emacsclient -t"              # $EDITOR opens in terminal
+    # export VISUAL="emacsclient -c -a emacs"   # $VISUAL opens in GUI mode
+    alias  e=_emacs_edit_from_inside            # open in emacs sever
     alias se=_emacs_sudo_edit_from_inside
-    alias  f=_emacs_edit_from_outside            # will open the file in the current terminal
+    alias  f=_emacs_edit_from_outside           # open in terminal
     alias sf=_emacs_sudo_edit_from_outside
     alias  ff=_emacs_edit_from_outside
     alias sff=_emacs_sudo_edit_from_outside
