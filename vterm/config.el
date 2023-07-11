@@ -1,6 +1,18 @@
 ;;; vterm/config.el -*- lexical-binding: t; -*-
 
 (after! vterm
+  ;;;; Add bash to default vterm shell
+  ;; Warning if bash is not present in the remote this may cause errors
+  ;;; How to know what to add:
+  ;; go to buffer where you will start vterm (tramp buffer)
+  ;; run:
+  ;; (list (plist-get (connection-local-criteria-for-default-directory) :protocol) "/bin/bash")
+  ;; This is the list you will need to add to vterm-tramp-shells
+  ;; to force bash instead of /bin/sh or other
+  (add-to-list 'vterm-tramp-shells '("ssh" "/bin/bash"))
+  (add-to-list 'vterm-tramp-shells '("sudo" "/bin/bash"))
+  (add-to-list 'vterm-tramp-shells '("vagrant" "/bin/bash"))
+  ;;; Vterm overides
   ;; Original functions overwrites tramp path with a guessed path.
   ;; However it breaks if remote fqdn/hostname is not resolbale by local machine
   ;; could also break on port forwarding, multihops,
@@ -77,8 +89,8 @@ Prints a reasuring message to proove good faith."
   (defun me/vterm--ffow-resolver (file)
     "Help vterm resolve FILE."
     (cond
-     ;; "/sudo::" try append the smartly developped
-     ;; doom--sudo-file-path do the trick for us
+     ;; "/sudo::"
+     ;; doom--sudo-file-path does the trick for us
      ((s-starts-with-p "/sudo::" file)
        (doom--sudo-file-path
         (concat (file-remote-p default-directory)

@@ -42,7 +42,7 @@ _emacs_edit_from_inside () {
     for file in "$@"
     do
         # VTERM support
-        if [[ -n ${EMACS_VTERM_PATH} ]]
+        if echo "$INSIDE_EMACS" | grep "vterm" &> /dev/null
         then
             vterm_cmd find-file-other-window "$file"
         else
@@ -138,6 +138,11 @@ to_buff () {
 
 }
 
+# START:
+
+alias k=kubectl
+alias etcdctl="kubectl exec etcd-$HOSTNAME -- etcdctl --cacert /etc/kubernetes/pki/etcd/ca.crt --cert /etc/kubernetes/pki/etcd/server.crt     --key /etc/kubernetes/pki/etcd/server.key"
+#
 if [[ "$INSIDE_EMACS" = 'vterm' ]] \
     && [[ -n ${EMACS_VTERM_PATH} ]] \
     && [[ -f ${EMACS_VTERM_PATH}/etc/emacs-vterm-bash.sh ]]; then
