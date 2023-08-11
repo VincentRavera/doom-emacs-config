@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: set
+# key: set
+# --
+variable "$1" {
+  type = set($2)
+  default = [
+    $0
+  ]
+}

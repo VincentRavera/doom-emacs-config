@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: map
+# key: map
+# --
+variable "$1" {
+  type = map
+  default = {
+    "$2" = $0
+  }
+}

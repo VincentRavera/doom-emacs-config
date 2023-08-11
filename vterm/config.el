@@ -76,6 +76,20 @@ Prints a reasuring message to proove good faith."
       )
     )
 
+  (defun me/vterm-paste-proxy ()
+    "Fetch proxy variables and paste it"
+    (interactive)
+    (let ((proxy-envs '("HTTP_PROXY"
+                        "HTTPS_PROXY"
+                        "NO_PROXY"
+                        "http_proxy"
+                        "https_proxy"
+                        "no_proxy")))
+
+      (vterm-insert
+       (--reduce-from (format "%s%s=\"%s\" " acc it (getenv it)) "" proxy-envs))
+      ))
+
   ;; find-file-other-window does not works great on remote:
   ;; if given an absolute path on a remote host,
   ;; the path will be understood as a local file since no
@@ -92,9 +106,9 @@ Prints a reasuring message to proove good faith."
      ;; "/sudo::"
      ;; doom--sudo-file-path does the trick for us
      ((s-starts-with-p "/sudo::" file)
-       (doom--sudo-file-path
-        (concat (file-remote-p default-directory)
-                (substring-no-properties file 7))))
+      (doom--sudo-file-path
+       (concat (file-remote-p default-directory)
+               (substring-no-properties file 7))))
      ;; "/" means we want the "Relative root"
      ;; try appending the remote prefix if relevent
      ((s-starts-with-p "/" file)

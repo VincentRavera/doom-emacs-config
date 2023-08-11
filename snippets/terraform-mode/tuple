@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: tuple
+# key: tuple
+# --
+variable "$1" {
+  type = tuple([$2])
+  default = [
+    $0
+  ]
+}

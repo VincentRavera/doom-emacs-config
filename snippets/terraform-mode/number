@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: number
+# key: number
+# --
+variable "$1" {
+  type = number
+  default = $0
+}

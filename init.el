@@ -94,6 +94,7 @@
 
        :tools
        ansible
+       ;;biblio            ; Writes a PhD for you (citation needed)
        (debugger          ; FIXME stepping through code, to help you add bugs
         +lsp)
        ;;direnv
@@ -112,8 +113,9 @@
        ;;prodigy           ; FIXME managing external services & code builders
        rgb               ; creating color strings
        ;;taskrunner        ; taskrunner for all your projects
-       ;;terraform         ; infrastructure as code
+       terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
+       ;;tree-sitter       ; syntax and parsing, sitting in a tree...
        upload            ; map local to remote projects via ssh/ftp
 
        ;; :os
@@ -123,8 +125,7 @@
        :lang
        ;;agda              ; types of types of types of types...
        ;;beancount         ; mind the GAAP
-       ;;cc                ; C/C++/Obj-C madness
-        ;; +lsp)
+       ;;(cc +lsp)         ; C > C++ == 1
        (clojure           ; java with a lisp
         +lsp)
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
@@ -191,7 +192,7 @@
        ruby
        ;; (ruby             ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        ;;  +lsp)
-       ;;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+       ;;(rust +lsp)       ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
        (scheme +guile)   ; a fully conniving family of lisps
        sh                ; she sells {ba,z,fi}sh shells on the C xor

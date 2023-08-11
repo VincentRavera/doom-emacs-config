@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: lifecycle
+# key: lifecycle
+# --
+
+lifecycle {
+  $0
+}

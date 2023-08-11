@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: meta
+# key: meta
+# condition: t
+# --
+${1:$$(yas-choose-value '("lifecycle {\}" "count = " "depends_on = []" "for_each = "))}
+$0

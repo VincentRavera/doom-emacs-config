@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: bool
+# key: bool
+# --
+variable "$1" {
+  type = bool
+  default = $0
+}

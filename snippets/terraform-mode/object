@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: object
+# key: object
+# --
+variable "$1" {
+  type = object({
+    $2
+  })
+  default = {
+   $0
+  }
+}
