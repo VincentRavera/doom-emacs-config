@@ -15,7 +15,8 @@
         eshell-history-size                             10000
         eshell-buffer-maximum-lines                     10000
         eshell-hist-ignoredups                          t
-        eshell-scroll-to-bottom-on-input                t)
+        eshell-scroll-to-bottom-on-input                t
+        fish-completion-inhibit-missing-fish-command-warning t)
 
   (defun me/eshell/remote-find-file (input-file-name)
     "open remotly the absolut file you want"
@@ -52,7 +53,8 @@
             "C-c C-r"   #'me/eshell/search-history)))
   (defun me/eshell/exec (command args)
     "Execute COMMAND with ARGS inside a bash command.
-Useless locally but on remote server `tramp' working directory might not make sense.
+Useless locally but on remote server `tramp' working
+directory might not make sense.
 Examples with docker-compose."
     ;; (eshell-eval (eshell-parse-command
     (eval (eshell-parse-command

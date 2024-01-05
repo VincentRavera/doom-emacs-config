@@ -85,3 +85,4 @@
       (package! vterm
         :type 'virtual
         :recipe recipe))))
+(package! keychain-environment)
