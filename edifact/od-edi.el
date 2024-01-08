@@ -55,16 +55,9 @@ The evaluation returns the formmatted edi.")
           :headers '(("Content-Type" . "application/json")
                      ("accept" . "application/json"))
           :data edifact
-          ;; :success (cl-function
-          ;;           (lambda (&key data &allow-other-keys)
-          ;;             (message "Got: %s" data)))
           )))
       (edi-edi-to-readable)
       (buffer-string))))
-;; (with-temp-buffer
-;;   (insert ())
-;;   (edi-edi-to-readable)
-;;   (buffer-string)))))))
 
 (defun edi-edi-ensure-not-readable (edi)
   (s-join "" (s-split "\n" edi 'omit-nulls)))
