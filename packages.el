@@ -86,3 +86,4 @@
         :type 'virtual
         :recipe recipe))))
 (package! keychain-environment)
+(package! ox-jira)

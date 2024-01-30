@@ -99,6 +99,16 @@ eshell () {
     $EDITOR -e "(+eshell/here)"
 }
 
+# Emacs shell
+shell () {
+    $EDITOR -e "(+shell/here)"
+}
+
+# Emacs shell
+vterm () {
+    $EDITOR -e "(+vterm/here t)"
+}
+
 # black="\[\e[0;30m\]"
 # red="\[\e[0;31m\]"
 green="\[\e[0;32m\]"

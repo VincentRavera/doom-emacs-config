@@ -1,5 +1,5 @@
 ;;; ../MY-DOOM/lsp/config.el -*- lexical-binding: t; -*-
 
-(after! (:and company)
+(after! (:and lsp python)
   ;; (push 'company-lsp company-backends)
   )

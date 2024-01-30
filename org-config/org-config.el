@@ -48,20 +48,7 @@
             (eval me/org-note-root "/Work/WorkArchive.org")     ;; For Older Tasks
             me/org-note-root
             (eval (concat me/org-note-root "/Work/"))
-            (eval (concat me/org-note-root "/Work/daily/"))
-            )
-
-      ;; org-agenda-text-search-extra-files
-      ;; '(agenda-archives
-      ;;   "~/workspace/wiki/VRA-Notes/2020/Notes-2020.org"
-      ;;   "~/workspace/wiki/VRA-Notes/2019/DT4.org"
-      ;;   "~/workspace/wiki/VRA-Notes/2020/2020-01.org"
-      ;;   "~/workspace/wiki/VRA-Notes/2020/2020-02.org"
-      ;;   "~/workspace/wiki/VRA-Notes/2020/2020-03.org"
-      ;;   "~/workspace/wiki/VRA-Notes/2020/2020-04.org"
-      ;;   "~/workspace/wiki/VRA-Notes/2020/2020-05.org"
-      ;; )
-      )
+            (eval (concat me/org-note-root "/Work/daily/"))))
 ;; END GLOBAL
 
 ;; CAPTURE

@@ -28,7 +28,7 @@
 ;; 'doom-gruvbox
 ;; 'doom-sourcerer
 ;; 'doom-horizon
-(setq doom-theme 'doom-horizon)
+(setq doom-theme 'doom-feather-dark)
 
 ;; If you want to change the style of line numbers, change this to `relative' or
 ;; `nil' to disable it:
