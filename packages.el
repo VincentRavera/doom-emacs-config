@@ -62,8 +62,6 @@
   :recipe (:host gitlab :repo "VincentRavera/emacs-piper" :branch "breadcrumbs"))
 (package! ztree)
 (package! guix)
-(package! dtache
-  :recipe (:host gitlab :repo "niklaseklund/dtache" :branch "main"))
 (package! shx)
 (package! vagrant-tramp)
 (package! vagrant)

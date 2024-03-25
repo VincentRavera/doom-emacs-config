@@ -40,13 +40,6 @@
           (equal emacs-version "28.1"))
   (setq byte-compile-warnings '(cl-functions)))
 
-;; Persenals Functions
-;; Must never depend on a module/package
-(defun me/compact-list-to-sting (list-args)
-  "Concatenate LIST-ARGS a list of string to a string seperated by spaces"
-  (if list-args
-      (concat (car list-args) " " (me/compact-list-to-sting (cdr list-args)))
-    ""))
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
@@ -84,88 +77,25 @@
 (after! 'yasnippet
   yas-global-mode 1)
 
+;; Utils Various config
+(load! "./utils/config.el")
+
 ;; ORG
 (load! "org-config/org-config.el")
 
-;; Python - Dependency management
-;;
-;; Pyenv
-;;
-;; Install pyenv : https://github.com/pyenv/pyenv
-;; Then create a recent and global python:
-;; pyenv install 3.7.6
-;; pyenv global 3.7.6
-;;
-;; Virtualenvwrapper
-;; plugin from: https://github.com/pyenv/pyenv-virtualenv
-;; You can now create a venv for your projects
-;; (Un-tested, do not use) Install VirtualEnvWrapper: https://virtualenvwrapper.readthedocs.io/en/latest/install.html
-;; (Un-tested, do not use) Create a venv for your project:
-;; (Un-tested, do not use) mkvirtualenv $NAME_OF_THE_PROJECT
-;; (Un-tested, do not use) workon $NAME_OF_THE_PROJECT
-;; (Un-tested, do not use) (workon) python -m pip install node pytest pyflakes isort python-language-server ptvsd mypy flake8
-;;
-;; pip install node pytest pyflakes ptvsd mypy flake8 python-lsp-server isort pipenv nose grip
-;;
-;; Starting the IDE
-;;
-;; Key bindings:
-
-(map! :leader
-      (:prefix ("l" . "lsp") ;; LSP UI/DAP
-       :desc "lsp start server" "l" #'lsp
-       :desc "errors in projects" "e" #'lsp-treemacs-errors-list
-       :desc "inline info toggle" "i" #'lsp-ui-sideline-toggle-symbols-info
-       :desc "Documentation" "D" #'lsp-ui-doc-glance
-       :desc "outline" "o" #'lsp-ui-imenu
-       (:prefix ("d" . "debug") ;; DAP-debug
-        :desc "start debug" "d" #'dap-debug
-        :desc "breakpoint toogle" "d" #'dap-breakpoint-toggle
-        :desc "edit debug template" "t" #'dap-debug
-        )
-       (:prefix ("s" . "search") ;; LSP search
-        :desc "definition" "d" #'lsp-ui-peek-find-definitions
-        :desc "implementations" "i" #'lsp-ui-peek-find-implementation
-        :desc "references" "r" #'lsp-ui-peek-find-references
-        )))
-
-;; add current buffer to workspace
-(map! :leader
-      (:prefix-map ("b" . "buffer")
-       (:prefix ("w" . "workspace")
-        :desc "Add buffer to workspace" "a" #'persp-add-buffer
-        :desc "Delete buffer from workspace" "d" #'persp-remove-buffer))
-      (:prefix-map ("TAB" . "workspace")
-       :desc "Add buffer to workspace" "a" #'persp-add-buffer
-       :desc "Delete buffer from workspace" "D" #'persp-remove-buffer
-       :desc "Switch Workspace" "SPC" #'+workspace/switch-to))
-
+;; LSP
+; DAP Debug configuration
 (load! "./dap/config.el")
+; LSP specific config
 (load! "./lsp/config.el")
 
-;; See https://github.com/murphytalk/doom.d for tips and trick
-;;
-;; After enabeling the virtualenv (M-x pyenv-workon)
-;; Load the lsp (M-x lsp) (SPC l l)
-;;
-
 ;; Java
-;; /home/vravera/Application/Eclipse/lsp/
-;; wget http://download.eclipse.org/jdtls/milestones/0.48.0/jdt-language-server-0.48.0-201912040033.tar.gz
-;; Usefull tips:
-;; lsp (start the daemon)
-;; SPC c d - Jump to definition
-;; SPC c D - Jump to refrences
-;; SPC c a - apply suggestions (Ctrl 1 in eclipse)
-;; SPC c j - open resource (Ctrl R in eclipse)
-;; lsp-ui-imenu (Show outline of code)
-;; lsp-treemacs-error-list (list errors in project)
-;;
 (load! "./java/config.el")
 
 ;; Clojure
 (load! "./clojure/config.el")
 
+;; Go
 (load! "./go/config.el")
 
 ;; Default browser
@@ -195,48 +125,27 @@
 ;; TRAMP config
 (load! "./tramp/config.el")
 
-;; EMMS
-(after! emms-mode-line
-  (emms-mode-line-disable)
-  (defun emms-mode-line-playlist-current ()
-    "Format the currently playing song."
-    (format emms-mode-line-format
-            (s-replace-regexp "^.*/" ""
-                              (s-replace-regexp ".mp3$" ""
-                                                (emms-track-description
-                                                 (emms-playlist-current-selected-track)))))))
-
 ;; undo
 (setq global-undo-tree-mode t)
 (after! undo-tree
-  (setq undo-tree-auto-save-history nil)
-  )
+  (setq undo-tree-auto-save-history nil))
 
 ;; Piper integration
 (load! "./piper/config.el")
 
 ;; Dtache Integration
-(load! "./dtache/config.el")
+;; Deprecation warning
+;; (load! "./dtache/config.el")
 
 ;; Ztree
 (after! ztree
   (add-to-list 'ztree-dir-filter-list "\\.pyc$"))
 
+;; Auth
 (setq password-cache-expiry (* 60 10))
-
-;; Dead circonflex
-;; https://unix.stackexchange.com/questions/28170/some-keys-are-invalid-on-emacs-when-using-german-keyboard
-(define-key key-translation-map [dead-circumflex] "^")
 
 ;; GUIX
 (load! "./guix/config.el")
-
-;; Display ansi color in buffer
-;; https://stackoverflow.com/questions/23378271/how-do-i-display-ansi-color-codes-in-emacs-for-any-mode
-(defun me/display-ansi-colors ()
-  (interactive)
-  (let ((inhibit-read-only t))
-    (ansi-color-apply-on-region (point-min) (point-max))))
 
 ;; magit
 (after! magit
@@ -257,12 +166,6 @@
                                            ;;       '((:right-align t)))
                                            (list "Stash" 5 'magit-repolist-column-stashes
                                                  '((:right-align t))))))
-;; Utils
-(autoload
-  'me/forced-evil
-  (concat doom-private-dir "utils/main.el")
-  "evil binding in a transient state."
-  t)
 
 ;; vagrant
 (load! "./vagrant/config.el")

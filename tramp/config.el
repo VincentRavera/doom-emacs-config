@@ -1,5 +1,7 @@
 ;;; tramp/config.el -*- lexical-binding: t; -*-
 (after! tramp
+
+  ;; Clanup tramp buffers
   (defun me/tramp/clear ()
     "Shuts down Tramp"
     (interactive)

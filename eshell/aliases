@@ -10,6 +10,7 @@ alias l ls -lh $*
 alias ll ls -lah $*
 alias clear clear-scrollback
 # Overide editor
+alias less 'view-file $1'
 alias e emacsclient $*
 alias vi emacsclient $*
 alias vim emacsclient $*

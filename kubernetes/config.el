@@ -30,6 +30,13 @@
 ;;   (setq kubernetes-overview-custom-views-alist '((replicasets . (context replicasets)))))
 ;;
 (after! kubernetes
+
+  ;; Performence issues
+  (setq kubernetes-poll-frequency 3600
+        kubernetes-redraw-frequency 3600)
+
+  ;; Buffer Naming
+  ;; Allow multiple frames of K8S
   (setq kubernetes-pod-buffer-name "*kubernetes pod: %s*"
         kubernetes-display-secret-buffer-name "*kubernetes secret: %s*"
         kubernetes-display-namespace-buffer-name "*kubernetes namespace: %s*"
@@ -40,6 +47,7 @@
         kubernetes-display-statefulset-buffer-name "*kubernetes statefulset: %s*"
         kubernetes-display-node-buffer-name "*kubernetes node: %s*"
         kubernetes-display-deployment-buffer-name "*kubernetes deployment: %s*")
+
   (defun kubernetes-yaml-make-buffer (bufname parsed-json)
     "[OVERRIDDEN] utils to create a yaml buffer, will format buffer name if possible."
     (let* ((betterbufname (format bufname
