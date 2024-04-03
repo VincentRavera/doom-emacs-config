@@ -39,3 +39,9 @@
        :desc "Delete buffer from workspace" "D" #'persp-remove-buffer
        :desc "Switch Workspace" "SPC" #'+workspace/switch-to))
 
+(defun me/get-filename-to-clipboard ()
+  "Copy file path to clipboard."
+  (interactive)
+  (let ((absolute-path (buffer-file-name)))
+    (kill-new absolute-path)
+    (message absolute-path)))

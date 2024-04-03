@@ -141,6 +141,7 @@ to_buff () {
             # xargs is there to strip the "" from the beginning
             # and end of the output from Emacs.
             emacsclient -n "$tobufftmp" | xargs
+            elisp '(persp-add-buffer (current-buffer))'
         fi
     else
         emacsclient -t "$tobufftmp"
