@@ -53,8 +53,14 @@
 (package! lsp-ui)
 ;; (package! lsp-docker)
 ;; (package! pyenv-mode)
-(package! kubernetes)
-(package! kubernetes-evil)
+
+;; Carfull buggy, but pretty
+;; (package! kubernetes)
+;; (package! kubernetes-evil)
+;; Stable and already well configured
+(package! kubel)
+(package! kubel-evil)
+
 (package! plantuml-mode)
 (package! json-snatcher)
 (package! jsonnet-mode)
