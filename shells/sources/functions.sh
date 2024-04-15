@@ -137,15 +137,32 @@ to_buff () {
         if [[ -n ${EMACS_VTERM_PATH} ]]
         then
             vterm_cmd find-file-other-window "$tobufftmp"
+            return 0
         else
             # xargs is there to strip the "" from the beginning
             # and end of the output from Emacs.
             emacsclient -n "$tobufftmp" | xargs
             elisp '(persp-add-buffer (current-buffer))'
+            return 0
         fi
     else
         emacsclient -t "$tobufftmp"
+            return 0
     fi
+
+}
+
+# Pipe STDIN to an Clipboard
+to_clip () {
+
+    if ! which xclip > /dev/null
+    then
+        echo "xclip not found"
+        return 1
+    fi
+    # STDIN storage
+    cat - | xclip -in -selection clipboard
+    return 0
 
 }
 
