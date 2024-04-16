@@ -128,28 +128,3 @@ Prints a reasuring message to proove good faith."
   (add-to-list 'vterm-eval-cmds '("find-file-other-window"
                                   me/vterm--find-file-other-window-wrapper)))
 
-(setq me/vterm-workspace "*Terms*")
-(defun me/terminal-emulator-vterms ()
-  "Spawn a Vterm in it's session."
-  (interactive)
-
-  ;; Create ws if needed
-  (with-selected-frame (make-frame)
-    (when (not (+workspace-exists-p me/vterm-workspace))
-      (+workspace-new me/vterm-workspace))
-    ;; switch to ws
-    (+workspace-switch me/vterm-workspace)
-    (let ((default-directory "~/"))
-      (+vterm/here t))))
-
-(defun me/terminal-emulator-eshell ()
-  "Spawn a Eshell in it's session."
-  (interactive)
-  ;; Create ws if needed
-  (with-selected-frame (make-frame)
-    (when (not (+workspace-exists-p me/vterm-workspace))
-      (+workspace-new me/vterm-workspace))
-    ;; switch to ws
-    (+workspace-switch me/vterm-workspace)
-    (let ((default-directory "~/"))
-      (+eshell/here))))

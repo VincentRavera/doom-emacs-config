@@ -160,7 +160,6 @@ to_clip () {
         echo "xclip not found"
         return 1
     fi
-    # STDIN storage
     cat - | xclip -in -selection clipboard
     return 0
 
