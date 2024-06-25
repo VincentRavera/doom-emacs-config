@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: call
+# key: call
+# condition: t
+# --
+#+CALL: ${0:FILENAME.org:BLOCK_NAME}()

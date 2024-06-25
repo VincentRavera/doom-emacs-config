@@ -48,6 +48,19 @@
       (concat (car list-args) " " (me/compact-list-to-sting (cdr list-args)))
     ""))
 
+(defun me/startup ()
+  (interactive)
+  (doom/load-session "~/.config/emacs/.local/etc/workspaces/Startup")
+  (with-selected-frame (car (frame-list))
+    (shell-command "i3-msg move container to workspace '2: '"))
+  (let ((frame (make-frame)))
+    (with-selected-frame frame
+      (+workspace/switch-to-0)
+      (switch-to-buffer (car (+workspace-buffer-list)))
+      (shell-command "i3-msg move container to workspace '9: '")))
+  (+workspace/switch-to-1)
+  (switch-to-buffer (car (+workspace-buffer-list))))
+
 ;;; PATCHS
 ;; Dead circonflex
 ;; https://unix.stackexchange.com/questions/28170/some-keys-are-invalid-on-emacs-when-using-german-keyboard

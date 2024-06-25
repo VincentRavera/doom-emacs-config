@@ -88,6 +88,41 @@ else
     alias sff=_emacs_sudo_edit_from_outside
 fi
 
+# TODO find better way to make EDITOR usable with vterm+tramp
+# Rules
+# 1. cannot upload file to remote !
+# 2. when you kubectl edit for instance the $EDITOR will be
+#    called like this: $EDITOR /tmp/myfile
+#    resulting in the file is always appended at the end of the command
+# 3. EDITOR cannot declare or call function
+
+# This cheat and uploads a file
+if [ "${INSIDE_EMACS#*"tramp"}" != "$INSIDE_EMACS" ]
+then
+    MY_EDITOR_PATH="$HOME/.config/myeditor/"
+    MY_EDITOR="$HOME/.config/myeditor/editor"
+    mkdir -p "$MY_EDITOR_PATH"
+    cat > "$MY_EDITOR" <<EOF
+#!/bin/bash
+
+# This editor script allows one to edit easily
+# from vterm with \$EDITOR
+for f in "\$@"
+do
+    printf "\e]51;Efind-file-other-window \"%s\"\e\\\" "\$(realpath "\$f")"
+done
+echo 'Are you done editing ? [Y/n]'
+read -r exit_code
+if [ "" == "\$exit_code" ] || [ "y" == "\$exit_code" ] || [ "Y" == "\$exit_code" ]
+then
+    exit 0
+else
+    exit 1
+fi
+EOF
+    chmod 700 "$MY_EDITOR"
+    export EDITOR="$MY_EDITOR"
+fi
 
 # Emacs lisp execute
 elisp () {

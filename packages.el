@@ -91,3 +91,6 @@
         :recipe recipe))))
 (package! keychain-environment)
 (package! ox-jira)
+
+;; (package! copilot
+;;   :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el")))

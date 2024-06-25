@@ -7,7 +7,7 @@
 
 
 (transient-define-prefix me/forced-evil ()
-  "Test Transient Title"
+  "Force Evil Keybinding."
   ["Move"
    ("k" "Up"    me/forced-evil:up)
    ("j" "Down"  me/forced-evil:down)
