@@ -1,5 +1,7 @@
 ;;; tramp/config.el -*- lexical-binding: t; -*-
 (after! tramp
+;; doom regression weird tramp syntax bug
+;;(tramp-change-syntax 'default)
 
   ;; Clanup tramp buffers
   (defun me/tramp/clear ()

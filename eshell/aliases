@@ -2,6 +2,7 @@
 # Defaults
 alias q exit
 alias f find-file $1
+alias fdiff ediff-files $1 $2
 alias ff find-file-other-window $1
 alias d dired $1
 alias bd eshell-up $1

@@ -10,8 +10,8 @@
        :desc "outline" "o" #'lsp-ui-imenu
        (:prefix ("d" . "debug") ;; DAP-debug
         :desc "start debug" "d" #'dap-debug
-        :desc "breakpoint toogle" "d" #'dap-breakpoint-toggle
-        :desc "edit debug template" "t" #'dap-debug
+        :desc "breakpoint toogle" "b" #'dap-breakpoint-toggle
+        :desc "edit debug template" "t" #'dap-debug-edit-template
         )
        (:prefix ("s" . "search") ;; LSP search
         :desc "definition" "d" #'lsp-ui-peek-find-definitions

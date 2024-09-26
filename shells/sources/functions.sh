@@ -38,6 +38,9 @@ _emacs_sudo () {
     echo "$@" | xargs -n1 realpath | sed -e "s;^;$EMACS_SUDO_PREFIX;" | xargs
 }
 
+# TODO: does not support well multi file editing on remote
+# cd /ssh:host:/tmp
+# f toto tata =opens=> /ssh:host:/tmp/toto /ssh:host:/tmp/tmp/toto
 _emacs_edit_from_inside () {
     for file in "$@"
     do
@@ -63,6 +66,45 @@ _emacs_sudo_edit_from_outside () {
     _emacs_edit_from_outside "$(_emacs_sudo "$@")"
 }
 
+_emacs_diff_from_inside () {
+    file_a="$1"
+    file_b="$2"
+    file_c="$3"
+
+    # VTERM support
+    if echo "$INSIDE_EMACS" | grep "vterm" &> /dev/null
+    then
+        if [ -z "$file_c" ]
+        then
+            vterm_cmd ediff-files "$file_a" "$file_b"
+        else
+            vterm_cmd ediff-files3 "$file_a" "$file_b" "$file_c"
+        fi
+    else
+        if [ -z "$file_c" ]
+        then
+            emacsclient -n -e "(ediff-files \"$file_a\" \"$file_b\")"
+        else
+            emacsclient -n -e "(ediff-files3 \"$file_a\" \"$file_b\" \"$file_c\")"
+        fi
+    fi
+}
+
+_emacs_diff_from_outside () {
+    file_a="$1"
+    file_b="$2"
+    file_c="$3"
+
+    # VTERM support
+    if [ -z "$file_c" ]
+    then
+        emacsclient -t -e "(ediff-files \"$file_a\" \"$file_b\")"
+    else
+
+        emacsclient -t -e "(ediff-files3 \"$file_a\" \"$file_b\" \"$file_c\")"
+    fi
+}
+
 
 if [ -n "$INSIDE_EMACS" ]; then
     # we are interacting from a shell/term inside of Emacs
@@ -71,10 +113,12 @@ if [ -n "$INSIDE_EMACS" ]; then
     # export VISUAL="emacsclient -c -a emacs"    # $VISUAL opens in GUI mode
     alias  e=_emacs_edit_from_inside
     alias se=_emacs_sudo_edit_from_inside
+    alias  ediff=_emacs_diff_from_inside
     alias  f=_emacs_edit_from_inside
     alias sf=_emacs_sudo_edit_from_inside
     alias  ff=_emacs_edit_from_inside
     alias sff=_emacs_sudo_edit_from_inside
+    alias  fdiff=_emacs_diff_from_inside
 
 else
     # we don't have to worry about nested frames
@@ -82,10 +126,12 @@ else
     # export VISUAL="emacsclient -c -a emacs"   # $VISUAL opens in GUI mode
     alias  e=_emacs_edit_from_inside            # open in emacs sever
     alias se=_emacs_sudo_edit_from_inside
+    alias  ediff=_emacs_diff_from_inside
     alias  f=_emacs_edit_from_outside           # open in terminal
     alias sf=_emacs_sudo_edit_from_outside
     alias  ff=_emacs_edit_from_outside
     alias sff=_emacs_sudo_edit_from_outside
+    alias  fdiff=_emacs_diff_from_outside
 fi
 
 # TODO find better way to make EDITOR usable with vterm+tramp

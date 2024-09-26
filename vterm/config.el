@@ -100,6 +100,15 @@ Prints a reasuring message to proove good faith."
   (defun me/vterm--find-file-other-window-wrapper (file)
     "Help vterm find a FILE."
     (find-file-other-window (me/vterm--ffow-resolver file)))
+  (defun me/vterm--ediff-files-wrapper (fileA fileB)
+    "Help vterm diff a FILE."
+    (ediff-files (me/vterm--ffow-resolver fileA)
+                 (me/vterm--ffow-resolver fileB)))
+  (defun me/vterm--ediff-files3-wrapper (fileA fileB fileC)
+    "Help vterm diff3 a FILE."
+    (ediff-files3 (me/vterm--ffow-resolver fileA)
+                  (me/vterm--ffow-resolver fileB)
+                  (me/vterm--ffow-resolver fileC)))
   (defun me/vterm--ffow-resolver (file)
     "Help vterm resolve FILE."
     (cond
@@ -126,5 +135,8 @@ Prints a reasuring message to proove good faith."
   ;; we append our resolver that only manipulate strings,
   ;; Proove me wrong but i think it's safe.
   (add-to-list 'vterm-eval-cmds '("find-file-other-window"
-                                  me/vterm--find-file-other-window-wrapper)))
-
+                                  me/vterm--find-file-other-window-wrapper))
+  (add-to-list 'vterm-eval-cmds '("ediff-files"
+                                  me/vterm--ediff-files-wrapper))
+  (add-to-list 'vterm-eval-cmds '("ediff-files3"
+                                  me/vterm--ediff-files3-wrapper)))

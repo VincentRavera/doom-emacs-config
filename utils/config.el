@@ -50,6 +50,7 @@
 
 (defun me/startup ()
   (interactive)
+  ;; Do I3 Integration setup
   (doom/load-session "~/.config/emacs/.local/etc/workspaces/Startup")
   (with-selected-frame (car (frame-list))
     (shell-command "i3-msg move container to workspace '2: '"))
