@@ -45,7 +45,20 @@ _emacs_edit_from_inside () {
     for file in "$@"
     do
         # VTERM support
-        if echo "$INSIDE_EMACS" | grep "vterm" &> /dev/null
+        if [[ "${INSIDE_EMACS}" != "${INSIDE_EMACS#*"vterm"*}" ]]
+        then
+            vterm_cmd find-file "$file"
+        else
+            emacsclient -n -e "(find-file \"$file\")"
+        fi
+    done
+}
+
+_emacs_edit_from_inside_other_window () {
+    for file in "$@"
+    do
+        # VTERM support
+        if [[ "${INSIDE_EMACS}" != "${INSIDE_EMACS#*"vterm"*}" ]]
         then
             vterm_cmd find-file-other-window "$file"
         else
@@ -72,7 +85,7 @@ _emacs_diff_from_inside () {
     file_c="$3"
 
     # VTERM support
-    if echo "$INSIDE_EMACS" | grep "vterm" &> /dev/null
+    if [[ "${INSIDE_EMACS}" != "${INSIDE_EMACS#*"vterm"*}" ]]
     then
         if [ -z "$file_c" ]
         then
@@ -95,7 +108,6 @@ _emacs_diff_from_outside () {
     file_b="$2"
     file_c="$3"
 
-    # VTERM support
     if [ -z "$file_c" ]
     then
         emacsclient -t -e "(ediff-files \"$file_a\" \"$file_b\")"
@@ -119,6 +131,7 @@ if [ -n "$INSIDE_EMACS" ]; then
     alias  ff=_emacs_edit_from_inside
     alias sff=_emacs_sudo_edit_from_inside
     alias  fdiff=_emacs_diff_from_inside
+    alias  ffow=_emacs_edit_from_inside_other_window
 
 else
     # we don't have to worry about nested frames
@@ -132,6 +145,7 @@ else
     alias  ff=_emacs_edit_from_outside
     alias sff=_emacs_sudo_edit_from_outside
     alias  fdiff=_emacs_diff_from_outside
+    alias  ffow=_emacs_diff_from_outside
 fi
 
 # TODO find better way to make EDITOR usable with vterm+tramp
@@ -155,7 +169,7 @@ then
 # from vterm with \$EDITOR
 for f in "\$@"
 do
-    printf "\e]51;Efind-file-other-window \"%s\"\e\\\" "\$(realpath "\$f")"
+    printf "\e]51;Efind-file \"%s\"\e\\\" "\$(realpath "\$f")"
 done
 echo 'Are you done editing ? [Y/n]'
 read -r exit_code
@@ -215,9 +229,9 @@ to_buff () {
     > "$tobufftmp" cat -
     if [ -n "$INSIDE_EMACS" ]; then
         # VTERM support
-        if [[ -n ${EMACS_VTERM_PATH} ]]
+        if [[ "${INSIDE_EMACS}" != "${INSIDE_EMACS#*"vterm"*}" ]]
         then
-            vterm_cmd find-file-other-window "$tobufftmp"
+            vterm_cmd find-file "$tobufftmp"
             return 0
         else
             # xargs is there to strip the "" from the beginning

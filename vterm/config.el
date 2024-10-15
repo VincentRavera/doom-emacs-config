@@ -97,6 +97,9 @@ Prints a reasuring message to proove good faith."
   ;; about tramp prefixes.
   ;; Bellow we solve context before sending it to
   ;; ffow
+  (defun me/vterm--find-file-wrapper (file)
+    "Help vterm find a FILE."
+    (find-file (me/vterm--ffow-resolver file)))
   (defun me/vterm--find-file-other-window-wrapper (file)
     "Help vterm find a FILE."
     (find-file-other-window (me/vterm--ffow-resolver file)))
@@ -134,6 +137,8 @@ Prints a reasuring message to proove good faith."
   ;; ffow should be as safe as find-file which is already trusted
   ;; we append our resolver that only manipulate strings,
   ;; Proove me wrong but i think it's safe.
+  (add-to-list 'vterm-eval-cmds '("find-file"
+                                  me/vterm--find-file-wrapper))
   (add-to-list 'vterm-eval-cmds '("find-file-other-window"
                                   me/vterm--find-file-other-window-wrapper))
   (add-to-list 'vterm-eval-cmds '("ediff-files"
