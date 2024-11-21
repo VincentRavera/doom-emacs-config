@@ -7,7 +7,12 @@
       (:prefix ("k" . "kubernetes") ;; Kubernetes support
        :desc "Overview" "k" #'kubel
        :desc "Refresh" "r" #'kubel-refresh
-       :desc "get" "g" #'kubel-set-resource
+       :desc "get" "g" (lambda ()
+                         (interactive)
+                         (kubel)
+                         (with-current-buffer (kubel--buffer-name)
+                             (kubel-set-resource)))
+       ;; #'kubel-set-resource
        :desc "yaml" "y" #'kubel-get-resource-details
        :desc "Describe" "d" (lambda ()
                               (interactive)

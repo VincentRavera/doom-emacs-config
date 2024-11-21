@@ -104,7 +104,7 @@
   (setq org-roam-dailies-directory "Work/daily/")
   (setq org-roam-dailies-capture-templates
         `(("d" "default" entry "* %? \n%T" :target
-          (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
+          (file+head "%<%Y-%m-W%V>.org" "#+title: %<%Y-%m-W%V>\n"))))
   (setq org-roam-capture-templates
         `(("d" "default" plain "%?"
            :target (file+head "${slug}.org" "#+title: ${title}\n#+filetags: ")

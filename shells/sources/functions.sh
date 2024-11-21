@@ -23,6 +23,9 @@
 #                                                           jumps to it
 # to_buff   send stdin to       Open Buffer                 Send to server,
 #           temporary buffer    in terminal                 jumps to it
+# to_buffow send stdin to       Open Buffer                 Send to server,
+#           temporary buffer    in terminal                 display it in
+#                                                           another window
 #
 ### MISC:
 # elisp             run lisp script in running emacs server
@@ -232,6 +235,33 @@ to_buff () {
         if [[ "${INSIDE_EMACS}" != "${INSIDE_EMACS#*"vterm"*}" ]]
         then
             vterm_cmd find-file "$tobufftmp"
+            return 0
+        else
+            # xargs is there to strip the "" from the beginning
+            # and end of the output from Emacs.
+            emacsclient -n "$tobufftmp" | xargs
+            elisp '(persp-add-buffer (current-buffer))'
+            return 0
+        fi
+    else
+        emacsclient -t "$tobufftmp"
+            return 0
+    fi
+
+}
+
+# Pipe STDIN to an emacs buffer and place it to another window
+to_buffow () {
+    # STDIN storage
+    tobufftmp="$(mktemp)"
+    trap 'rm -f -- "tobufftmp"' RETURN
+    # Reading STDIN
+    > "$tobufftmp" cat -
+    if [ -n "$INSIDE_EMACS" ]; then
+        # VTERM support
+        if [[ "${INSIDE_EMACS}" != "${INSIDE_EMACS#*"vterm"*}" ]]
+        then
+            vterm_cmd find-file-other-window "$tobufftmp"
             return 0
         else
             # xargs is there to strip the "" from the beginning
