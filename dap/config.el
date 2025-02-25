@@ -2,6 +2,7 @@
 
 (after! dap-mode
   (setq dap-auto-configure-features '(sessions locals controls tooltip))
+  (setq dap-python-debugger 'debugpy)
   (dap-ui-mode 1)
   ;; enables mouse hover support
   (dap-tooltip-mode 1)

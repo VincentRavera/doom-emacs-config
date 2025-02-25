@@ -130,6 +130,15 @@ Prints a reasuring message to proove good faith."
      (t
       file)))
 
+  (defun me/vterm--send-edit ()
+    "Sends C-x C-e."
+    (interactive)
+    (vterm-send-key "x" nil nil 0)
+    (vterm-send-key "e" nil nil 0))
+
+  (map! :map vterm-mode-map
+        "C-x C-e" #'me/vterm--send-edit)
+
   ;; The variable vterm-eval-cmds is a SERIOUSLY SENSIBLE variable !
   ;; Do not be the guy that adds RCE into their config !
 

@@ -65,7 +65,7 @@
 (package! json-snatcher)
 (package! jsonnet-mode)
 (package! emacs-piper
-  :recipe (:host gitlab :repo "VincentRavera/emacs-piper" :branch "breadcrumbs"))
+  :recipe (:host gitlab :repo "VincentRavera/emacs-piper" :branch "update-from-official"))
 (package! ztree)
 (package! guix)
 (package! shx)
