@@ -99,7 +99,8 @@
 (load! "./go/config.el")
 
 ;; Default browser
-(setq browse-url-browser-function 'browse-url-firefox)
+(load! "./browser/librewolf.el")
+;; (setq browse-url-browser-function 'browse-url-firefox)
 
 ;; Default grep command
 (setq grep-command "grep --color -nriH --null -e ")
